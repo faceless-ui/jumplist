@@ -4,7 +4,7 @@
 
 # React Jumplist
 
-An omniscient jumplist for React projects.
+Jack jump over the candlestick.
 
 ## Quick Start
 
@@ -17,17 +17,26 @@ $ yarn add @trbl/react-jumplist
 ### Compositon
 
 ```jsx
-  <JumplistProvider>
-    <Jumplist
-      list={[
-        {
-          clickableNode: <p>Click to jump<p>,
-          targetId: 'jump-target',
-        }
-      ]}
-    />
-    <div id="jump-target" />
-  </JumplistProvider>
+  import React from 'react';
+  import { JumplistProvider, Jumplist } from '@trbl/react-jumplist';
+
+  const App = () => {
+    return (
+      <JumplistProvider>
+        <Jumplist
+          list={[
+            {
+              clickableNode: <p>Click to jump<p>,
+              targetId: 'jump-target',
+            }
+          ]}
+        />
+        <div id="jump-target" />
+      </JumplistProvider>
+    )
+  }
+
+  export default App;
 ```
 
 ## Demo

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import animateScrollTo from 'animated-scroll-to';
-import defaultClassPrefix from '../JumplistProvider/defaultClassPrefix';
+import defaultClassPrefix from '../defaultClassPrefix';
 import withJumplistContext from '../withJumplistContext';
 
 class Jumplist extends Component {
