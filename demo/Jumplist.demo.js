@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react';
-import { Jumplist, JumplistProvider } from '../src'; // swap '../src' for '../dist/build.bundle' to test production
+import { Jumplist, JumplistProvider } from '../dist/build.bundle'; // swap '../src' for '../dist/build.bundle' to test production
 
 const formatClickableNode = string => (
-  <button type="button">
-    {string}
-  </button>
+  <li>
+    <button type="button">
+      {string}
+    </button>
+  </li>
 );
 
 const JumplistDemo = () => {
@@ -20,6 +22,10 @@ const JumplistDemo = () => {
       <pre style={{ marginTop: '0px' }}>
         <code>
           classPrefix: demo
+          <br />
+          htmlElement: div
+          <br />
+          threshold: 50
           <br />
           vOffset: -100
           <br />
@@ -37,7 +43,9 @@ const JumplistDemo = () => {
       <JumplistProvider classPrefix="demo">
         <div style={{ position: 'fixed' }}>
           <Jumplist
+            threshold={50}
             vOffset={-100}
+            htmlElement="div"
             list={[
               {
                 clickableNode: formatClickableNode('Jump to darkseagreen'),
@@ -60,7 +68,7 @@ const JumplistDemo = () => {
         />
         <div
           id="chocolate"
-          style={{ height: '500px', backgroundColor: 'linchocolateen', marginBottom: '10px' }}
+          style={{ height: '500px', backgroundColor: 'chocolate', marginBottom: '10px' }}
         />
         <div
           id="darksalmon"

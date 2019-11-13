@@ -18,12 +18,15 @@ $ yarn add @trbl/react-jumplist
 
 ```jsx
   <JumplistProvider>
-    <Jumplist speed={0.3}>
-      ...
-    </Jumplist>
-    <Jumplist speed={0.9}>
-      ...
-    </Jumplist>
+    <Jumplist
+      list={[
+        {
+          clickableNode: <p>Click to jump<p>,
+          targetId: 'jump-target',
+        }
+      ]}
+    />
+    <div id="jump-target" />
   </JumplistProvider>
 ```
 

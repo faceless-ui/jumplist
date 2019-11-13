@@ -101,6 +101,7 @@ class Jumplist extends Component {
       classPrefix,
       className,
       list,
+      htmlElement: HtmlElement,
     } = this.props;
 
     const { targetNodes } = this.state;
@@ -114,7 +115,7 @@ class Jumplist extends Component {
 
     if (list && list.length > 0) {
       return (
-        <ul className={classes}>
+        <HtmlElement className={classes}>
           {list.map((item, index) => {
             const { clickableNode, targetId } = item;
             const targetNode = targetNodes.find(node => node.id === targetId);
@@ -126,18 +127,17 @@ class Jumplist extends Component {
             ].filter(Boolean).join(' ');
 
             return (
-              <li
-                key={index}
-                className={itemClasses}
-              >
-                {React.cloneElement(
-                  clickableNode,
-                  { onClick: () => this.scrollTo(targetId) },
-                )}
-              </li>
+              React.cloneElement(
+                clickableNode,
+                {
+                  key: index,
+                  className: itemClasses,
+                  onClick: () => this.scrollTo(targetId),
+                },
+              )
             );
           })}
-        </ul>
+        </HtmlElement>
       );
     }
 
@@ -151,6 +151,7 @@ Jumplist.defaultProps = {
   list: [],
   threshold: undefined,
   vOffset: 0,
+  htmlElement: 'ul',
 };
 
 Jumplist.propTypes = {
@@ -172,6 +173,19 @@ Jumplist.propTypes = {
   ),
   threshold: PropTypes.number,
   vOffset: PropTypes.number,
+  htmlElement: PropTypes.oneOf([
+    'article',
+    'aside',
+    'div',
+    'footer',
+    'header',
+    'main',
+    'nav',
+    'section',
+    'span',
+    'ul',
+    'li',
+  ]),
 };
 
 export default withJumplistContext(Jumplist);
