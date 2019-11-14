@@ -12,8 +12,8 @@ const formatClickableNode = string => (
 const JumplistDemo = () => {
   return (
     <Fragment>
-      <pre style={{ marginTop: '0px' }}>
-        <code>
+      <code>
+        <pre>
           classPrefix: demo
           <br />
           htmlElement: div
@@ -31,8 +31,8 @@ const JumplistDemo = () => {
           &emsp; onject
           <br />
           {'}'}
-        </code>
-      </pre>
+        </pre>
+      </code>
       <div style={{ position: 'fixed' }}>
         <Jumplist
           threshold={50}

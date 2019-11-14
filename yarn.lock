@@ -735,6 +735,24 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@trbl/react-scroll-position@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@trbl/react-scroll-position/-/react-scroll-position-0.0.3.tgz#e3ec02ef1d0de95f9abe27b8d384fb51dbd64e4f"
+  integrity sha512-Nm4bBGL6jFsAU8p7g8W8uh9slEIe+0SoN+LpyyzUfYdnWoO/NamJ+puHBaC1B0uAYm8yfeLWm4h9RalSxxqwYg==
+  dependencies:
+    prop-types "^15.7.2"
+    react "^16.11.0"
+    react-dom "^16.11.0"
+
+"@trbl/react-window-info@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@trbl/react-window-info/-/react-window-info-0.0.2.tgz#a8139f2a2a628244b4bf4d7a3fd8b8c6e39612f1"
+  integrity sha512-TYGJCTZ26o+keZZkMbWtAGfJNm2S0VbrHvEd/S05ASzTbrxHiyo4xqrLIpepPFRKBjN1rUR7+pcm57zpccJs9Q==
+  dependencies:
+    prop-types "^15.7.2"
+    react "^16.11.0"
+    react-dom "^16.11.0"
+
 "@types/events@*":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"

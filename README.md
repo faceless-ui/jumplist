@@ -4,7 +4,7 @@
 
 # React Jumplist
 
-Jack jump over the candlestick.
+Jumps through the hoops for you.
 
 ## Quick Start
 

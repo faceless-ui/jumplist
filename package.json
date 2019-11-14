@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "dist/build.bundle.js",
   "repository": "git@github.com:trouble/react-jumplist.git",
-  "description": "Jack jump over the candlestick.",
+  "description": "Jumps through the hoops for you.",
   "author": "<info@trbl.design>",
   "license": "MIT",
   "keywords": [
@@ -23,6 +23,8 @@
     "react": "^16.11.0"
   },
   "dependencies": {
+    "@trbl/react-scroll-position": "^0.0.3",
+    "@trbl/react-window-info": "^0.0.2",
     "animated-scroll-to": "^2.0.4",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
