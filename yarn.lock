@@ -735,19 +735,19 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@trbl/react-scroll-position@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@trbl/react-scroll-position/-/react-scroll-position-0.0.3.tgz#e3ec02ef1d0de95f9abe27b8d384fb51dbd64e4f"
-  integrity sha512-Nm4bBGL6jFsAU8p7g8W8uh9slEIe+0SoN+LpyyzUfYdnWoO/NamJ+puHBaC1B0uAYm8yfeLWm4h9RalSxxqwYg==
+"@trbl/react-scroll-info@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@trbl/react-scroll-info/-/react-scroll-info-0.0.6.tgz#594dd0e425a0c812346c81796ecc5a48653aab4b"
+  integrity sha512-9sEUR7UEKJq4ggdKnHLCIhm3KBw3RjS6Bh2Bv2BYK3uoLdNiQpribYVPWAzKGUsNfutFTRERa2mq4Rs8HvtAHA==
   dependencies:
     prop-types "^15.7.2"
     react "^16.11.0"
     react-dom "^16.11.0"
 
-"@trbl/react-window-info@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@trbl/react-window-info/-/react-window-info-0.0.2.tgz#a8139f2a2a628244b4bf4d7a3fd8b8c6e39612f1"
-  integrity sha512-TYGJCTZ26o+keZZkMbWtAGfJNm2S0VbrHvEd/S05ASzTbrxHiyo4xqrLIpepPFRKBjN1rUR7+pcm57zpccJs9Q==
+"@trbl/react-window-info@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@trbl/react-window-info/-/react-window-info-0.0.3.tgz#b05e27395a364107f3c95e07fdc8626aaf44dd45"
+  integrity sha512-FRWhtc368zNDPAUPQsxG75v6w3pSH2wA1ip6cFb2f/HP1BW9WlWX+ORl9Z+5qqRgymvN+2lXcR+vENDqpQq84A==
   dependencies:
     prop-types "^15.7.2"
     react "^16.11.0"

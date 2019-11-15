@@ -8,27 +8,39 @@ class Jumplist extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      targetNodes: [],
+      targetNodes: {},
     };
   }
 
   componentDidMount() {
-    this.setTargetNodeInfo();
+    this.queryTargetNodes();
   }
 
   componentDidUpdate(prevProps) {
     const {
-      scrollPos,
-      // windowInfo,
+      scrollInfo,
+      scrollInfo: {
+        count: scrollCount,
+      },
+      windowInfo,
     } = this.props;
 
-    if (prevProps.scrollPos.x !== scrollPos.x || prevProps.scrollPos.y !== scrollPos.y) {
-      this.onScroll();
+    const verticalScrollChange = prevProps.scrollInfo.x !== scrollInfo.x;
+    const horizontalScrollChange = prevProps.scrollInfo.y !== scrollInfo.y;
+    const windowWidthChange = prevProps.windowInfo.width !== windowInfo.width;
+    const windowHeightChange = prevProps.windowInfo.height !== windowInfo.height;
+
+    if (windowWidthChange || windowHeightChange) {
+      this.queryTargetNodes();
     }
 
-    // if (prevProps.windowInfo.width !== windowInfo.width || prevProps.windowInfo.height !== windowInfo.height) {
-    //   this.onResize();
-    // }
+    if (verticalScrollChange || horizontalScrollChange) {
+      if (scrollCount > 1) {
+        this.trackTargetNodes();
+      } else {
+        this.queryTargetNodes();
+      }
+    }
   }
 
   scrollTo = (targetId) => {
@@ -42,23 +54,8 @@ class Jumplist extends Component {
     }
   }
 
-  onResize = () => {
-    this.setTargetNodeInfo();
-  }
-
-  onScroll = () => {
-    this.setTargetNodeInfo();
-  }
-
   isNodeInFrame = (nodeRect) => {
-    const {
-      threshold,
-      // windowInfo: {
-      //   width: windowWidth,
-      //   height: windowHeight,
-      // },
-    } = this.props;
-
+    const { threshold } = this.props;
     const { top, right, bottom, left } = nodeRect;
 
     const boundaries = {
@@ -71,29 +68,61 @@ class Jumplist extends Component {
     return (top <= boundaries.bottom && bottom >= boundaries.top) && (right >= boundaries.left && left <= boundaries.right);
   }
 
-  setTargetNodeInfo = () => {
+  queryTargetNodes = () => {
     const { list } = this.props;
-    const targetNodes = [];
+    const targetNodes = {};
 
     if (list && list.length > 0) {
       list.forEach((item) => {
         const { targetId } = item;
         const node = document.getElementById(targetId);
         if (node) {
-          const nodeRect = node.getBoundingClientRect(); // clientRect because its relative to the vieport
+          const DOMRect = node.getBoundingClientRect(); // clientRect because its relative to the vieport
+          const { top, right, bottom, left } = DOMRect;
+          const nodeRect = { top, right, bottom, left };
           const isInFrame = this.isNodeInFrame(nodeRect);
-          const offsetTop = nodeRect.top + window.scrollY;
-
-          targetNodes.push({
-            id: targetId,
+          const offsetTop = top + window.scrollY;
+          targetNodes[targetId] = {
+            nodeRect, // create a new, plain object from the DOMRect object
             offsetTop,
             isInFrame,
-          });
+          };
         }
       });
     }
 
     this.setState({ targetNodes });
+  }
+
+  trackTargetNodes = () => {
+    const {
+      scrollInfo: {
+        xDifference,
+        yDifference,
+      },
+    } = this.props;
+
+    const { targetNodes } = this.state;
+    const modifiedNodes = {};
+    const targetNodeIDs = Object.keys(targetNodes);
+
+    if (targetNodeIDs && targetNodeIDs.length > 0) {
+      targetNodeIDs.forEach((targetNodeID) => {
+        const targetNode = targetNodes[targetNodeID];
+        const { nodeRect } = targetNode;
+        const newNodeRect = {
+          top: nodeRect.top - yDifference,
+          right: nodeRect.right + xDifference,
+          bottom: nodeRect.bottom - yDifference,
+          left: nodeRect.left + xDifference,
+        };
+        modifiedNodes[targetNodeID] = {
+          nodeRect: newNodeRect,
+          isInFrame: this.isNodeInFrame(newNodeRect),
+        };
+      });
+    }
+    this.setState({ targetNodes: modifiedNodes });
   }
 
   render() {
@@ -118,7 +147,7 @@ class Jumplist extends Component {
         <HtmlElement className={classes}>
           {list.map((item, index) => {
             const { clickableNode, targetId } = item;
-            const targetNode = targetNodes.find(node => node.id === targetId);
+            const targetNode = targetNodes[targetId];
             const itemBaseClass = `${baseClass}__item`;
 
             const itemClasses = [
@@ -157,9 +186,22 @@ Jumplist.defaultProps = {
 Jumplist.propTypes = {
   classPrefix: PropTypes.string,
   className: PropTypes.string,
-  scrollPos: PropTypes.shape({
+  scrollInfo: PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,
+    xDifference: PropTypes.number,
+    yDifference: PropTypes.number,
+    xDirection: PropTypes.oneOf([
+      '',
+      'left',
+      'right',
+    ]),
+    yDirection: PropTypes.oneOf([
+      '',
+      'up',
+      'down',
+    ]),
+    count: PropTypes.number,
   }).isRequired,
   windowInfo: PropTypes.shape({
     width: PropTypes.number,

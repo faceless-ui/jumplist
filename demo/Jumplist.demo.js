@@ -18,7 +18,7 @@ const JumplistDemo = () => {
           <br />
           htmlElement: div
           <br />
-          threshold: 50
+          threshold: 0
           <br />
           vOffset: -100
           <br />
@@ -35,36 +35,43 @@ const JumplistDemo = () => {
       </code>
       <div style={{ position: 'fixed' }}>
         <Jumplist
-          threshold={50}
           vOffset={-100}
           htmlElement="div"
           list={[
             {
-              clickableNode: formatClickableNode('Jump to darkseagreen'),
-              targetId: 'darkseagreen',
+              clickableNode: formatClickableNode('Jump to whitesmoke'),
+              targetId: 'whitesmoke',
             },
             {
-              clickableNode: formatClickableNode('Jump to chocolate'),
-              targetId: 'chocolate',
+              clickableNode: formatClickableNode('Jump to gainsboro'),
+              targetId: 'gainsboro',
             },
             {
-              clickableNode: formatClickableNode('Jump to darksalmon'),
-              targetId: 'darksalmon',
+              clickableNode: formatClickableNode('Jump to silver'),
+              targetId: 'silver',
+            },
+            {
+              clickableNode: formatClickableNode('Jump to gray'),
+              targetId: 'gray',
             },
           ]}
         />
       </div>
       <div
-        id="darkseagreen"
-        style={{ height: '1500px', backgroundColor: 'darkseagreen', marginBottom: '10px' }}
+        id="whitesmoke"
+        style={{ height: '500px', backgroundColor: 'whitesmoke', marginBottom: '10px' }}
       />
       <div
-        id="chocolate"
-        style={{ height: '500px', backgroundColor: 'chocolate', marginBottom: '10px' }}
+        id="gainsboro"
+        style={{ height: '250px', backgroundColor: 'gainsboro', marginBottom: '10px' }}
       />
       <div
-        id="darksalmon"
-        style={{ height: '2000px', backgroundColor: 'darksalmon' }}
+        id="silver"
+        style={{ height: '1500px', backgroundColor: 'silver', marginBottom: '10px' }}
+      />
+      <div
+        id="gray"
+        style={{ height: '2000px', backgroundColor: 'gray' }}
       />
     </Fragment>
   );

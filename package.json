@@ -1,6 +1,6 @@
 {
   "name": "@trbl/react-jumplist",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/build.bundle.js",
   "repository": "git@github.com:trouble/react-jumplist.git",
   "description": "Jumps through the hoops for you.",
@@ -23,8 +23,8 @@
     "react": "^16.11.0"
   },
   "dependencies": {
-    "@trbl/react-scroll-position": "^0.0.3",
-    "@trbl/react-window-info": "^0.0.2",
+    "@trbl/react-scroll-info": "^0.0.6",
+    "@trbl/react-window-info": "^0.0.3",
     "animated-scroll-to": "^2.0.4",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
