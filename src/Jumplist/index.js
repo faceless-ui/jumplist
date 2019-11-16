@@ -43,10 +43,10 @@ class Jumplist extends Component {
     }
   }
 
-  scrollTo = (targetId) => {
+  scrollTo = (targetID) => {
     const { vOffset } = this.props;
     const { targetNodes } = this.state;
-    const node = targetNodes.find(targetNode => targetNode.id === targetId);
+    const node = targetNodes[targetID];
 
     if (node) {
       const yCoord = node.offsetTop + (vOffset || 0);
@@ -68,6 +68,7 @@ class Jumplist extends Component {
     return (top <= boundaries.bottom && bottom >= boundaries.top) && (right >= boundaries.left && left <= boundaries.right);
   }
 
+  // true positions
   queryTargetNodes = () => {
     const { list } = this.props;
     const targetNodes = {};
@@ -79,11 +80,11 @@ class Jumplist extends Component {
         if (node) {
           const DOMRect = node.getBoundingClientRect(); // clientRect because its relative to the vieport
           const { top, right, bottom, left } = DOMRect;
-          const nodeRect = { top, right, bottom, left };
+          const nodeRect = { top, right, bottom, left }; // create a new, plain object from the DOMRect object
           const isInFrame = this.isNodeInFrame(nodeRect);
           const offsetTop = top + window.scrollY;
           targetNodes[targetId] = {
-            nodeRect, // create a new, plain object from the DOMRect object
+            nodeRect,
             offsetTop,
             isInFrame,
           };
@@ -94,6 +95,7 @@ class Jumplist extends Component {
     this.setState({ targetNodes });
   }
 
+  // synthetic (calculated) positions
   trackTargetNodes = () => {
     const {
       scrollInfo: {
@@ -112,12 +114,14 @@ class Jumplist extends Component {
         const { nodeRect } = targetNode;
         const newNodeRect = {
           top: nodeRect.top - yDifference,
-          right: nodeRect.right + xDifference,
+          right: nodeRect.right - xDifference,
           bottom: nodeRect.bottom - yDifference,
-          left: nodeRect.left + xDifference,
+          left: nodeRect.left - xDifference,
         };
+        const offsetTop = newNodeRect.top + window.scrollY;
         modifiedNodes[targetNodeID] = {
           nodeRect: newNodeRect,
+          offsetTop,
           isInFrame: this.isNodeInFrame(newNodeRect),
         };
       });
