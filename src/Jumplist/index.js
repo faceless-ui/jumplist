@@ -44,13 +44,15 @@ class Jumplist extends Component {
   }
 
   scrollTo = (targetID) => {
-    const { vOffset } = this.props;
+    const { hScrollOffset, vScrollOffset } = this.props;
     const { targetNodes } = this.state;
     const node = targetNodes[targetID];
 
     if (node) {
-      const yCoord = node.offsetTop + (vOffset || 0);
-      animateScrollTo(yCoord);
+      const { offsetLeft, offsetTop } = node;
+      const xCoord = offsetLeft + (hScrollOffset || 0);
+      const yCoord = offsetTop + (vScrollOffset || 0);
+      animateScrollTo([xCoord, yCoord]);
     }
   }
 
@@ -82,11 +84,11 @@ class Jumplist extends Component {
           const { top, right, bottom, left } = DOMRect;
           const nodeRect = { top, right, bottom, left }; // create a new, plain object from the DOMRect object
           const isInFrame = this.isNodeInFrame(nodeRect);
-          const offsetTop = top + window.scrollY;
           targetNodes[targetId] = {
             nodeRect,
-            offsetTop,
             isInFrame,
+            offsetLeft: left + window.scrollX,
+            offsetTop: top + window.scrollY,
           };
         }
       });
@@ -118,10 +120,9 @@ class Jumplist extends Component {
           bottom: nodeRect.bottom - yDifference,
           left: nodeRect.left - xDifference,
         };
-        const offsetTop = newNodeRect.top + window.scrollY;
         modifiedNodes[targetNodeID] = {
+          ...targetNode, // keep original offsetLeft and offsetTop
           nodeRect: newNodeRect,
-          offsetTop,
           isInFrame: this.isNodeInFrame(newNodeRect),
         };
       });
@@ -183,7 +184,8 @@ Jumplist.defaultProps = {
   className: '',
   list: [],
   threshold: undefined,
-  vOffset: 0,
+  hScrollOffset: 0,
+  vScrollOffset: 0,
   htmlElement: 'ul',
 };
 
@@ -218,7 +220,8 @@ Jumplist.propTypes = {
     }),
   ),
   threshold: PropTypes.number,
-  vOffset: PropTypes.number,
+  hScrollOffset: PropTypes.number,
+  vScrollOffset: PropTypes.number,
   htmlElement: PropTypes.oneOf([
     'article',
     'aside',

@@ -22,6 +22,8 @@ const JumplistDemo = () => {
           <br />
           vOffset: -100
           <br />
+          hOffset: -100
+          <br />
           {'list: {'}
           <br />
           &emsp; object
@@ -35,7 +37,8 @@ const JumplistDemo = () => {
       </code>
       <div style={{ position: 'fixed', zIndex: '1', backgroundColor: 'white' }}>
         <Jumplist
-          vOffset={-100}
+          vScrollOffset={-100}
+          hScrollOffset={-100}
           htmlElement="div"
           list={[
             {
