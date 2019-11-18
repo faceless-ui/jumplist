@@ -133,6 +133,7 @@ class Jumplist extends Component {
       className,
       list,
       htmlElement: HtmlElement,
+      htmlAttributes,
     } = this.props;
 
     const { targetNodes } = this.state;
@@ -142,11 +143,18 @@ class Jumplist extends Component {
     const classes = [
       baseClass,
       className,
+      htmlAttributes.className,
     ].filter(Boolean).join(' ');
+
+    const strippedHtmlAttributes = { ...htmlAttributes };
+    delete strippedHtmlAttributes.className;
 
     if (list && list.length > 0) {
       return (
-        <HtmlElement className={classes}>
+        <HtmlElement
+          className={classes}
+          {...strippedHtmlAttributes}
+        >
           {list.map((item, index) => {
             const { clickableNode, targetId } = item;
             const targetNode = targetNodes[targetId];
@@ -185,6 +193,7 @@ Jumplist.defaultProps = {
   hScrollOffset: 0,
   vScrollOffset: 0,
   htmlElement: 'ul',
+  htmlAttributes: {},
 };
 
 Jumplist.propTypes = {
@@ -224,6 +233,11 @@ Jumplist.propTypes = {
     'ul',
     'li',
   ]),
+  htmlAttributes: PropTypes.shape({
+    id: PropTypes.string,
+    className: PropTypes.string,
+    style: PropTypes.shape({}),
+  }),
 };
 
 export default withJumplistContext(Jumplist);

@@ -43,6 +43,11 @@ const JumplistDemo = () => {
           vScrollOffset={-100}
           hScrollOffset={-100}
           htmlElement="div"
+          className="demo-class"
+          htmlAttributes={{
+            className: 'demo-html-attribute-class',
+            'aria-label': 'demo aria label',
+          }}
           list={[
             {
               clickableNode: formatClickableNode('Jump to whitesmoke'),

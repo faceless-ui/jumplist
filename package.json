@@ -1,6 +1,6 @@
 {
   "name": "@trbl/react-jumplist",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "dist/build.bundle.js",
   "repository": "git@github.com:trouble/react-jumplist.git",
   "description": "Jumps through the hoops for you.",
