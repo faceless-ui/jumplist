@@ -18,23 +18,20 @@ class Jumplist extends Component {
 
   componentDidUpdate(prevProps) {
     const {
-      scrollInfo,
-      scrollInfo: {
-        count: scrollCount,
-      },
-      windowInfo,
+      scrollInfo: { count: scrollCount },
+      windowInfo: { count: windowCount },
     } = this.props;
 
-    const verticalScrollChange = prevProps.scrollInfo.x !== scrollInfo.x;
-    const horizontalScrollChange = prevProps.scrollInfo.y !== scrollInfo.y;
-    const windowWidthChange = prevProps.windowInfo.width !== windowInfo.width;
-    const windowHeightChange = prevProps.windowInfo.height !== windowInfo.height;
+    const {
+      scrollInfo: { count: prevScrollCount },
+      windowInfo: { count: prevWindowCount },
+    } = prevProps;
 
-    if (windowWidthChange || windowHeightChange) {
+    if (windowCount !== prevWindowCount) {
       this.queryTargetNodes();
     }
 
-    if (verticalScrollChange || horizontalScrollChange) {
+    if (scrollCount !== prevScrollCount) {
       if (scrollCount > 1) {
         this.trackTargetNodes();
       } else {
@@ -197,21 +194,12 @@ Jumplist.propTypes = {
     y: PropTypes.number,
     xDifference: PropTypes.number,
     yDifference: PropTypes.number,
-    xDirection: PropTypes.oneOf([
-      '',
-      'left',
-      'right',
-    ]),
-    yDirection: PropTypes.oneOf([
-      '',
-      'up',
-      'down',
-    ]),
     count: PropTypes.number,
   }).isRequired,
   windowInfo: PropTypes.shape({
     width: PropTypes.number,
     height: PropTypes.number,
+    count: PropTypes.number,
   }).isRequired,
   list: PropTypes.arrayOf(
     PropTypes.shape({
