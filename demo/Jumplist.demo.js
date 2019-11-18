@@ -2,7 +2,10 @@ import React, { Fragment } from 'react';
 import { Jumplist } from '../src'; // swap '../src' for '../dist/build.bundle' to test production
 
 const formatClickableNode = string => (
-  <li>
+  <li
+    className="demo-class"
+    aria-label="demo aria label"
+  >
     <button type="button">
       {string}
     </button>

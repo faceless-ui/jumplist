@@ -155,6 +155,7 @@ class Jumplist extends Component {
             const itemClasses = [
               itemBaseClass,
               targetNode && targetNode.isInFrame && `${itemBaseClass}--is-in-frame`,
+              clickableNode.props.className,
             ].filter(Boolean).join(' ');
 
             return (
