@@ -735,10 +735,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@trbl/react-scroll-info@^0.0.11":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@trbl/react-scroll-info/-/react-scroll-info-0.0.11.tgz#7e6ea71a03fda8b48e17a394b80fb5f817a4a38d"
-  integrity sha512-8b7D78o9IGnl03cg42kpMsQ4QE1oE9Pvtqf8+g99JIWvx4IJK5vkatzz2BVwC3BHN9OvfL/N9pTLxxH5DqzMKQ==
+"@trbl/react-scroll-info@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@trbl/react-scroll-info/-/react-scroll-info-0.0.12.tgz#4f46494bb660f65dda5a49b6dbc9b998a6bd23b0"
+  integrity sha512-Mh9c0bSowVP4gHPzVHrvCJXC13uqAx40KkPa0YdcYl1c4k5GW47v/5opGyHtcrv97bWHqXCZNTuv+VILM608ig==
   dependencies:
     prop-types "^15.7.2"
     react "^16.11.0"
