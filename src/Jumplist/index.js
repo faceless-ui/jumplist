@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import animateScrollTo from 'animated-scroll-to';
-import defaultClassPrefix from '../defaultClassPrefix';
 import withJumplistContext from '../withJumplistContext';
 
 class Jumplist extends Component {
@@ -130,7 +129,9 @@ class Jumplist extends Component {
   render() {
     const {
       classPrefix,
+      id,
       className,
+      style,
       list,
       htmlElement: HtmlElement,
       htmlAttributes,
@@ -138,7 +139,7 @@ class Jumplist extends Component {
 
     const { targetNodes } = this.state;
 
-    const baseClass = `${classPrefix || defaultClassPrefix}__jumplist`;
+    const baseClass = `${classPrefix}__jumplist`;
 
     const classes = [
       baseClass,
@@ -147,12 +148,19 @@ class Jumplist extends Component {
     ].filter(Boolean).join(' ');
 
     const strippedHtmlAttributes = { ...htmlAttributes };
+    delete strippedHtmlAttributes.id;
     delete strippedHtmlAttributes.className;
+    delete strippedHtmlAttributes.style;
 
     if (list && list.length > 0) {
       return (
         <HtmlElement
+          id={id || htmlAttributes.id}
           className={classes}
+          style={{
+            ...htmlAttributes.style,
+            ...style,
+          }}
           {...strippedHtmlAttributes}
         >
           {list.map((item, index) => {
@@ -187,7 +195,9 @@ class Jumplist extends Component {
 
 Jumplist.defaultProps = {
   classPrefix: '',
+  id: '',
   className: '',
+  style: undefined,
   list: [],
   threshold: undefined,
   hScrollOffset: 0,
@@ -198,7 +208,9 @@ Jumplist.defaultProps = {
 
 Jumplist.propTypes = {
   classPrefix: PropTypes.string,
+  id: PropTypes.string,
   className: PropTypes.string,
+  style: PropTypes.shape({}),
   scrollInfo: PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,

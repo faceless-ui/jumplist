@@ -15,38 +15,44 @@ const formatClickableNode = string => (
 const JumplistDemo = () => {
   return (
     <Fragment>
-      <code>
-        <pre>
-          classPrefix: demo
-          <br />
-          htmlElement: div
-          <br />
-          threshold: 0
-          <br />
-          vOffset: -100
-          <br />
-          hOffset: -100
-          <br />
-          {'list: {'}
-          <br />
-          &emsp; object
-          <br />
-          &emsp; object
-          <br />
-          &emsp; onject
-          <br />
-          {'}'}
-        </pre>
-      </code>
       <div style={{ position: 'fixed', zIndex: '1', backgroundColor: 'white' }}>
+        <code>
+          <pre>
+          classPrefix: demo
+            <br />
+          htmlElement: div
+            <br />
+          threshold: 0
+            <br />
+          vOffset: -100
+            <br />
+          hOffset: -100
+            <br />
+            {'list: {'}
+            <br />
+          &emsp; object
+            <br />
+          &emsp; object
+            <br />
+          &emsp; onject
+            <br />
+            {'}'}
+          </pre>
+        </code>
         <Jumplist
+          id="demo-id"
           vScrollOffset={-100}
           hScrollOffset={-100}
           htmlElement="div"
           className="demo-class"
+          style={{ textDecoration: 'none' }}
           htmlAttributes={{
-            className: 'demo-html-attribute-class',
+            id: 'demo-html-attribute-id', // will be overriden by 'id' prop
+            className: 'demo-html-attribute-class', // will be merged with 'className' prop
             'aria-label': 'demo aria label',
+            style: { // will be merged with 'style' prop
+              textDecoration: 'underline', // will be overriden by matched css property of 'style' prop
+            },
           }}
           list={[
             {
