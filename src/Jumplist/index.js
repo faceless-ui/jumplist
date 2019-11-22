@@ -19,14 +19,16 @@ class Jumplist extends Component {
     const {
       scrollInfo: { count: scrollCount },
       windowInfo: { count: windowCount },
+      list,
     } = this.props;
 
     const {
       scrollInfo: { count: prevScrollCount },
       windowInfo: { count: prevWindowCount },
+      list: prevList,
     } = prevProps;
 
-    if (windowCount !== prevWindowCount) {
+    if (windowCount !== prevWindowCount || list !== prevList) {
       this.queryTargetNodes();
     }
 
