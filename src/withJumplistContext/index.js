@@ -2,7 +2,7 @@ import React from 'react';
 import JumplistContext from '../JumplistProvider/context';
 
 const withJumplistContext = (PassedComponent) => {
-  const JumplistWrap = (props) => {
+  const JumplistContextWrap = (props) => {
     return (
       <JumplistContext.Consumer>
         {(context) => {
@@ -18,7 +18,7 @@ const withJumplistContext = (PassedComponent) => {
       </JumplistContext.Consumer>
     );
   };
-  return JumplistWrap;
+  return JumplistContextWrap;
 };
 
 export default withJumplistContext;

@@ -18,20 +18,22 @@ $ yarn add @trbl/react-jumplist
 
 ```jsx
   import React from 'react';
-  import { JumplistProvider, Jumplist } from '@trbl/react-jumplist';
+  import { JumplistProvider, JumplistNav, JumplistNode } from '@trbl/react-jumplist';
 
   const App = () => {
     return (
       <JumplistProvider>
-        <Jumplist
+        <JumplistNav
           list={[
             {
-              clickableNode: <p>Click to jump<p>,
-              targetId: 'jump-target',
+              clickableNode: <p>...<p>,
+              targetID: 'yourID',
             }
           ]}
         />
-        <div id="jump-target" />
+        <JumplistNode id="yourID">
+          ...
+        </JumplistNode>
       </JumplistProvider>
     )
   }
@@ -53,8 +55,11 @@ $ open http://localhost:3000
 
 All available props can be found via the references below:
 
-  - [Jumplist](/src/Jumplist/README.md)
+  - [JumplistContext](/src/JumplistContext/README.md)
+  - [JumplistNav](/src/JumplistNav/README.md)
+  - [JumplistNode](/src/JumplistNode/README.md)
   - [JumplistProvider](/src/JumplistProvider/README.md)
+  - [withJumplistContext](/src/withJumplistContext/README.md)
 
 ## License
 

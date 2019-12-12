@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Jumplist } from '../src'; // swap '../src' for '../dist/build.bundle' to test production
+import { JumplistNav, JumplistNode } from '../src'; // swap '../src' for '../dist/build.bundle' to test production
 
 const formatClickableNode = string => (
   <li
@@ -15,31 +15,38 @@ const formatClickableNode = string => (
 const JumplistDemo = () => {
   return (
     <Fragment>
-      <div style={{ position: 'fixed', zIndex: '1', backgroundColor: 'white' }}>
+      <style
+        dangerouslySetInnerHTML={{ __html: `
+          .demo__jumplist-nav__item--is-in-frame::after {
+            content: ' is in frame';
+          }
+        ` }}
+      />
+      <div style={{ position: 'fixed', zIndex: '1' }}>
         <code>
           <pre>
-          classPrefix: demo
+            classPrefix: demo,
             <br />
-          htmlElement: div
+            htmlElement: div,
             <br />
-          threshold: 0
+            threshold: 0,
             <br />
-          vOffset: -100
+            vOffset: -100,
             <br />
-          hOffset: -100
+            hOffset: -100,
             <br />
             {'list: {'}
             <br />
-          &emsp; object
+            &emsp; object
             <br />
-          &emsp; object
+            &emsp; object
             <br />
-          &emsp; onject
+            &emsp; onject
             <br />
             {'}'}
           </pre>
         </code>
-        <Jumplist
+        <JumplistNav
           id="demo-id"
           vScrollOffset={-100}
           hScrollOffset={-100}
@@ -57,27 +64,27 @@ const JumplistDemo = () => {
           list={[
             {
               clickableNode: formatClickableNode('Jump to whitesmoke'),
-              targetId: 'whitesmoke',
+              targetID: 'whitesmoke',
             },
             {
               clickableNode: formatClickableNode('Jump to gainsboro'),
-              targetId: 'gainsboro',
+              targetID: 'gainsboro',
             },
             {
               clickableNode: formatClickableNode('Jump to silver'),
-              targetId: 'silver',
+              targetID: 'silver',
             },
             {
               clickableNode: formatClickableNode('Jump to gray'),
-              targetId: 'gray',
+              targetID: 'gray',
             },
             {
               clickableNode: formatClickableNode('Jump to lightblue'),
-              targetId: 'lightblue',
+              targetID: 'lightblue',
             },
             {
               clickableNode: formatClickableNode('Jump to blue'),
-              targetId: 'blue',
+              targetID: 'blue',
             },
           ]}
         />
@@ -85,36 +92,61 @@ const JumplistDemo = () => {
       <div style={{ display: 'flex' }}>
         <div
           className="vertical-overflow"
-          style={{ width: '150vw', flexShrink: '0' }}
+          style={{
+            width: '150vw', flexShrink: '0',
+          }}
         >
-          <div
+          <JumplistNode
             id="whitesmoke"
-            style={{ height: '500px', backgroundColor: 'whitesmoke', marginBottom: '10px' }}
+            style={{
+              height: '500px',
+              backgroundColor: 'whitesmoke',
+              marginBottom: '10px',
+            }}
           />
-          <div
+          <JumplistNode
             id="gainsboro"
-            style={{ height: '250px', backgroundColor: 'gainsboro', marginBottom: '10px' }}
+            style={{
+              height: '250px',
+              backgroundColor: 'gainsboro',
+              marginBottom: '10px',
+            }}
           />
-          <div
+          <JumplistNode
             id="silver"
-            style={{ height: '1500px', backgroundColor: 'silver', marginBottom: '10px' }}
+            style={{
+              height: '1500px',
+              backgroundColor: 'silver',
+              marginBottom: '10px',
+            }}
           />
-          <div
+          <JumplistNode
             id="gray"
-            style={{ height: '2000px', backgroundColor: 'gray' }}
+            style={{
+              height: '2000px',
+              backgroundColor: 'gray',
+            }}
           />
         </div>
         <div
           className="horizontal-overflow"
           style={{ flexShrink: '0' }}
         >
-          <div
+          <JumplistNode
             id="lightblue"
-            style={{ height: '1000px', width: '125vw', backgroundColor: 'lightblue', display: 'inline-block' }}
+            style={{ height: '1000px',
+              width: '125vw',
+              backgroundColor: 'lightblue',
+              display: 'inline-block',
+            }}
           />
-          <div
+          <JumplistNode
             id="blue"
-            style={{ height: '1000px', width: '500px', backgroundColor: 'blue', display: 'inline-block' }}
+            style={{ height: '1000px',
+              width: '500px',
+              backgroundColor: 'blue',
+              display: 'inline-block',
+            }}
           />
         </div>
       </div>
