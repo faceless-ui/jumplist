@@ -4,7 +4,7 @@
 
 # React Jumplist
 
-Jumps through the hoops for you.
+Jump, and you will find out how to unfold your wings as you fall.
 
 ## Quick Start
 
@@ -60,6 +60,10 @@ All available props can be found via the references below:
   - [JumplistNode](/src/JumplistNode/README.md)
   - [JumplistProvider](/src/JumplistProvider/README.md)
   - [withJumplistContext](/src/withJumplistContext/README.md)
+
+## Contribution
+
+[Help us,](https://github.com/trouble/.github/blob/master/CONTRIBUTING.md) or let us [help you help us](https://github.com/trouble/.github/blob/master/SUPPORT.md).
 
 ## License
 
