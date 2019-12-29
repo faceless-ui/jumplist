@@ -36,13 +36,11 @@ const JumplistNode = forwardRef((props, ref) => {
       totalXOffset,
       totalYOffset,
     });
-  }, [nodeTop, nodeLeft]);
+  }, [nodeTop, nodeLeft, syncNode, id, htmlAttributes.id, isInFrame, totalXOffset, totalYOffset]);
 
-  useEffect(() => {
-    return () => {
-      removeNode(id || htmlAttributes.id);
-    };
-  }, []);
+  useEffect(() => () => {
+    removeNode(id || htmlAttributes.id);
+  }, [htmlAttributes.id, id, removeNode]);
 
   const classes = [
     baseClass,

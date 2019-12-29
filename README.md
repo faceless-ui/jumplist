@@ -14,7 +14,7 @@ Jump, and you will find out how to unfold your wings as you fall.
 $ yarn add @trbl/react-jumplist
 ```
 
-### Compositon
+### Composition
 
 ```jsx
   import React from 'react';
@@ -46,8 +46,8 @@ $ yarn add @trbl/react-jumplist
 To demo locally, clone the repo and
 
 ```bash
-$ yarn install
-$ npm run dev
+$ yarn
+$ yarn dev
 $ open http://localhost:3000
 ```
 
