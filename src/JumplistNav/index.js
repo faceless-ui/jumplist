@@ -1,6 +1,7 @@
 import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import animateScrollTo from 'animated-scroll-to';
+import HTMLElement from '@trbl/react-html-element';
 import withJumplistContext from '../withJumplistContext';
 
 const JumplistNav = (props) => {
@@ -8,9 +9,9 @@ const JumplistNav = (props) => {
     id,
     className,
     style,
-    list,
-    htmlElement: HtmlElement,
+    htmlElement,
     htmlAttributes,
+    list,
     jumplistContext: {
       classPrefix,
       xScrollOffset,
@@ -30,10 +31,9 @@ const JumplistNav = (props) => {
     }
   };
 
-  const classes = [
+  const mergedClasses = [
     baseClass,
     className,
-    htmlAttributes.className,
   ].filter(Boolean).join(' ');
 
   const strippedHtmlAttributes = { ...htmlAttributes };
@@ -42,14 +42,14 @@ const JumplistNav = (props) => {
   delete strippedHtmlAttributes.style;
 
   return (
-    <HtmlElement
-      id={id || htmlAttributes.id}
-      className={classes}
-      style={{
-        ...htmlAttributes.style,
-        ...style,
+    <HTMLElement
+      {...{
+        id,
+        className: mergedClasses,
+        style,
+        htmlElement,
+        htmlAttributes,
       }}
-      {...strippedHtmlAttributes}
     >
       {list && list.length > 0 && list.map((item, index) => {
         const { clickableNode, targetID } = item;
@@ -73,45 +73,30 @@ const JumplistNav = (props) => {
           )
         );
       })}
-    </HtmlElement>
+    </HTMLElement>
   );
 };
 
 JumplistNav.defaultProps = {
-  id: '',
-  className: '',
-  style: undefined,
+  id: undefined,
+  className: undefined,
+  style: {},
+  htmlElement: 'button',
+  htmlAttributes: {},
   hScrollOffset: 0,
   vScrollOffset: 0,
-  htmlElement: 'ul',
-  htmlAttributes: {},
   list: [],
+  children: undefined,
 };
 
 JumplistNav.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
   style: PropTypes.shape({}),
+  htmlElement: PropTypes.string,
+  htmlAttributes: PropTypes.shape({}),
   hScrollOffset: PropTypes.number,
   vScrollOffset: PropTypes.number,
-  htmlElement: PropTypes.oneOf([
-    'article',
-    'aside',
-    'div',
-    'footer',
-    'header',
-    'main',
-    'nav',
-    'section',
-    'span',
-    'ul',
-    'li',
-  ]),
-  htmlAttributes: PropTypes.shape({
-    id: PropTypes.string,
-    className: PropTypes.string,
-    style: PropTypes.shape({}),
-  }),
   list: PropTypes.arrayOf(
     PropTypes.shape({
       clickableNode: PropTypes.node.isRequired,
@@ -127,6 +112,7 @@ JumplistNav.propTypes = {
       top: PropTypes.number,
     }),
   }).isRequired,
+  children: PropTypes.node,
 };
 
 export default withJumplistContext(JumplistNav);

@@ -24,6 +24,7 @@
     "react": "^16.8.0"
   },
   "dependencies": {
+    "@trbl/react-html-element": "^1.0.1",
     "@trbl/react-node-position": "^0.0.8",
     "animated-scroll-to": "^2.0.4",
     "prop-types": "^15.7.2",
