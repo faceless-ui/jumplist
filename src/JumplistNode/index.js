@@ -1,17 +1,17 @@
 import React, { forwardRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withNodePosition } from '@trbl/react-node-position';
+import HTMLElement from '@trbl/react-html-element';
 import withJumplistContext from '../withJumplistContext';
 
 const JumplistNode = forwardRef((props, ref) => {
   const {
-    classPrefix,
     id,
     className,
     style,
-    htmlElement: HtmlElement,
+    htmlElement,
     htmlAttributes,
-    children,
+    classPrefix,
     nodePosition: {
       nodeRect: {
         top: nodeTop,
@@ -25,6 +25,7 @@ const JumplistNode = forwardRef((props, ref) => {
       syncNode,
       removeNode,
     },
+    children,
   } = props;
 
   const baseClass = `${classPrefix}__jumplist-node`;
@@ -42,66 +43,46 @@ const JumplistNode = forwardRef((props, ref) => {
     removeNode(id || htmlAttributes.id);
   }, [htmlAttributes.id, id, removeNode]);
 
-  const classes = [
+  const mergedClasses = [
     baseClass,
     className,
-    htmlAttributes.className,
   ].filter(Boolean).join(' ');
 
-  const strippedHtmlAttributes = { ...htmlAttributes };
-  delete strippedHtmlAttributes.id;
-  delete strippedHtmlAttributes.className;
-  delete strippedHtmlAttributes.style;
-
   return (
-    <HtmlElement
-      id={id || htmlAttributes.id}
-      ref={ref}
-      className={classes}
-      style={{
-        ...htmlAttributes.style,
-        ...style,
+    <HTMLElement
+      {...{
+        id,
+        className: mergedClasses,
+        style,
+        htmlElement,
+        htmlAttributes,
+        ref,
       }}
-      {...strippedHtmlAttributes}
     >
-      {children}
-    </HtmlElement>
+      {children && children}
+    </HTMLElement>
   );
 });
 
 JumplistNode.defaultProps = {
-  classPrefix: '',
-  id: '',
-  className: '',
+  id: undefined,
+  className: undefined,
   style: {},
-  htmlElement: 'div',
+  htmlElement: 'button',
   htmlAttributes: {},
+  classPrefix: '',
+  children: undefined,
 };
 
 JumplistNode.propTypes = {
-  classPrefix: PropTypes.string,
   id: PropTypes.string,
   className: PropTypes.string,
   style: PropTypes.shape({}),
-  htmlElement: PropTypes.oneOf([
-    'article',
-    'aside',
-    'div',
-    'footer',
-    'header',
-    'main',
-    'nav',
-    'section',
-    'span',
-    'ul',
-    'li',
-  ]),
+  htmlElement: PropTypes.string,
   htmlAttributes: PropTypes.shape({
     id: PropTypes.string,
-    className: PropTypes.string,
-    style: PropTypes.shape({}),
   }),
-  children: PropTypes.node.isRequired,
+  classPrefix: PropTypes.string,
   nodePosition: PropTypes.shape({
     nodeRect: PropTypes.shape({
       top: PropTypes.number,
@@ -115,6 +96,7 @@ JumplistNode.propTypes = {
     syncNode: PropTypes.func,
     removeNode: PropTypes.func,
   }).isRequired,
+  children: PropTypes.node,
 };
 
 export default withJumplistContext(withNodePosition(JumplistNode));

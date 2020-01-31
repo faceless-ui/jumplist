@@ -26,23 +26,23 @@ const JumplistDemo = () => (
     <div style={{ position: 'fixed', zIndex: '1' }}>
       <code>
         <pre>
-            classPrefix: demo,
+          classPrefix: demo,
           <br />
-            htmlElement: div,
+          htmlElement: div,
           <br />
-            threshold: 0,
+          threshold: 0,
           <br />
-            vOffset: -100,
+          vOffset: -100,
           <br />
-            hOffset: -100,
+          hOffset: -100,
           <br />
           {'list: {'}
           <br />
-            &emsp; object
+          &emsp; object
           <br />
-            &emsp; object
+          &emsp; object
           <br />
-            &emsp; onject
+          &emsp; onject
           <br />
           {'}'}
         </pre>
