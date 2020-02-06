@@ -55,7 +55,6 @@ $ open http://localhost:3000
 
 All available props can be found via the references below:
 
-  - [JumplistContext](./src/JumplistContext/README.md)
   - [JumplistNav](./src/JumplistNav/README.md)
   - [JumplistNode](./src/JumplistNode/README.md)
   - [JumplistProvider](./src/JumplistProvider/README.md)
