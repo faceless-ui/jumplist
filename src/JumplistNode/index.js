@@ -1,81 +1,91 @@
-import React, { forwardRef, useEffect } from 'react';
+import React, { Component, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { withNodePosition } from '@trbl/react-node-position';
 import HTMLElement from '@trbl/react-html-element';
-import withJumplistContext from '../withJumplistContext';
+import JumplistContext from '../JumplistProvider/context';
 
-const JumplistNode = forwardRef((props, ref) => {
-  const {
-    id,
-    className,
-    style,
-    htmlElement,
-    htmlAttributes,
-    classPrefix,
-    nodePosition: {
-      nodeRect: {
-        top: nodeTop,
-        left: nodeLeft,
+class JumplistNode extends Component {
+  componentDidUpdate(prevProps) {
+    const {
+      id,
+      htmlAttributes,
+      nodePosition: {
+        isVisible,
+        totalOffsetLeft,
+        totalOffsetTop,
       },
-      isInFrame,
-      totalXOffset,
-      totalYOffset,
-    },
-    jumplistContext: {
-      syncNode,
-      removeNode,
-    },
-    children,
-  } = props;
+    } = this.props;
 
-  const baseClass = `${classPrefix}__jumplist-node`;
+    const { syncNode } = this.context;
 
-  useEffect(() => {
-    syncNode({
-      id: id || htmlAttributes.id,
-      isInFrame,
-      totalXOffset,
-      totalYOffset,
-    });
-  }, [nodeTop, nodeLeft, syncNode, id, htmlAttributes.id, isInFrame, totalXOffset, totalYOffset]);
+    const visibilityChange = isVisible !== prevProps.nodePosition.isVisible;
+    const offsetChange = totalOffsetLeft !== prevProps.nodePosition.totalOffsetLeft || totalOffsetTop !== prevProps.nodePosition.totalOffsetTop;
 
-  useEffect(() => () => {
-    removeNode(id || htmlAttributes.id);
-  }, [htmlAttributes.id, id, removeNode]);
+    if (visibilityChange || offsetChange) {
+      syncNode({
+        id: id || htmlAttributes.id,
+        isVisible,
+        totalOffsetLeft,
+        totalOffsetTop,
+      });
+    }
+  }
 
-  const mergedClasses = [
-    baseClass,
-    className,
-  ].filter(Boolean).join(' ');
+  componentWillUnmount() {
+    const { id } = this.props;
+    const { removeNode } = this.context;
+    removeNode(id);
+  }
 
-  return (
-    <HTMLElement
-      {...{
-        id,
-        className: mergedClasses,
-        style,
-        htmlElement,
-        htmlAttributes,
-        ref,
-      }}
-    >
-      {children && children}
-    </HTMLElement>
-  );
-});
+  render() {
+    const {
+      id,
+      className,
+      style,
+      htmlElement,
+      htmlAttributes,
+      classPrefix,
+      incomingRef,
+      children,
+    } = this.props;
+
+    const baseClass = `${classPrefix}__jumplist-node`;
+
+    const mergedClasses = [
+      baseClass,
+      className,
+    ].filter(Boolean).join(' ');
+
+    return (
+      <HTMLElement
+        {...{
+          id,
+          className: mergedClasses,
+          style,
+          htmlElement,
+          htmlAttributes,
+          ref: incomingRef,
+        }}
+      >
+        {children && children}
+      </HTMLElement>
+    );
+  }
+}
+
+JumplistNode.contextType = JumplistContext;
 
 JumplistNode.defaultProps = {
-  id: undefined,
   className: undefined,
   style: {},
-  htmlElement: 'button',
+  htmlElement: 'div',
   htmlAttributes: {},
   classPrefix: '',
   children: undefined,
 };
 
 JumplistNode.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.string.isRequired,
   className: PropTypes.string,
   style: PropTypes.shape({}),
   htmlElement: PropTypes.string,
@@ -88,15 +98,19 @@ JumplistNode.propTypes = {
       top: PropTypes.number,
       left: PropTypes.number,
     }),
-    isInFrame: PropTypes.bool,
-    totalXOffset: PropTypes.number,
-    totalYOffset: PropTypes.number,
+    isVisible: PropTypes.bool,
+    totalOffsetLeft: PropTypes.number,
+    totalOffsetTop: PropTypes.number,
   }).isRequired,
-  jumplistContext: PropTypes.shape({
-    syncNode: PropTypes.func,
-    removeNode: PropTypes.func,
-  }).isRequired,
+  incomingRef: PropTypes.shape({}).isRequired,
   children: PropTypes.node,
 };
 
-export default withJumplistContext(withNodePosition(JumplistNode));
+export default withNodePosition(
+  forwardRef((props, ref) => (
+    <JumplistNode
+      incomingRef={ref}
+      {...props}
+    />
+  )),
+);

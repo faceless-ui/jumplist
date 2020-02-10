@@ -1121,34 +1121,34 @@
     react "^16.12.0"
     react-dom "^16.12.0"
 
-"@trbl/react-node-position@^0.0.8":
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/@trbl/react-node-position/-/react-node-position-0.0.8.tgz#de9e7807780fb46154e491113a0345142a87a0a8"
-  integrity sha512-xZiyfmBzqMP7dowWVEOJt54pubGqSfYlvSo6ihqPNYZcY3s1Uha0RTGR7zpL7q6cgl2R4mh8O/HSO4aTynuoew==
+"@trbl/react-node-position@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@trbl/react-node-position/-/react-node-position-1.1.1.tgz#9b8632968c49fc89d91e2969c37166c2742dc072"
+  integrity sha512-Vc361omMJ4RxBfqUKdTWwaXaEBiQXxemtZDEVKWs22pZ14mGB/bkiuHl075rvAJ/6Wu601E7mgTW9eQ189X5Eg==
   dependencies:
-    "@trbl/react-scroll-info" "^0.0.16"
-    "@trbl/react-window-info" "^0.0.11"
+    "@trbl/react-scroll-info" "^1.0.0"
+    "@trbl/react-window-info" "^1.0.0"
     prop-types "^15.7.2"
     react "^16.11.0"
     react-dom "^16.11.0"
 
-"@trbl/react-scroll-info@^0.0.16":
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/@trbl/react-scroll-info/-/react-scroll-info-0.0.16.tgz#73937c51f56a677f9fc5dd592d186cd41901bb83"
-  integrity sha512-MvFVzk0Fv/iifNgYZLgflL7dHx7z8cWr4EyY5Kvo8BZbfYhpG3+9hIbgz2zb46ymNa364CZHmkYhNVE7TdbTOw==
+"@trbl/react-scroll-info@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@trbl/react-scroll-info/-/react-scroll-info-1.0.0.tgz#a19fb349afa8ac1ae26d1816f6875e31b8116e5e"
+  integrity sha512-/69qIYR28WVin1xeT4lauN/2cw+OYuY4whMklBlsgLsP3MsjHvMLxlXJPbK52U1N20J1t6gx9bpZ/wMWSlusZw==
   dependencies:
     prop-types "^15.7.2"
-    react "^16.11.0"
-    react-dom "^16.11.0"
+    react "^16.12.0"
+    react-dom "^16.12.0"
 
-"@trbl/react-window-info@^0.0.11":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@trbl/react-window-info/-/react-window-info-0.0.11.tgz#351dd9bfa5866c53a64ddd17209b3161543de9a3"
-  integrity sha512-k/yzGrutpgV2BJ5Dvhca4Cc7CD+KLin9C71Wbl7X8y0EhTpdQTPhg1y3tM5umdzkov+erd5+HqPPUK+AdXQONQ==
+"@trbl/react-window-info@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@trbl/react-window-info/-/react-window-info-1.0.0.tgz#d41f7939dcbd5ee82a192a3eeee84be687d7ae23"
+  integrity sha512-rW+xDsPrjqS9Z0ZmI1mWbOmtqa/IeHAr2fBNkn35s4BhTrt2DqeURXSGfbCR2t1uBMrFjYjEqzc8RHoQqaK1aA==
   dependencies:
     prop-types "^15.7.2"
-    react "^16.11.0"
-    react-dom "^16.11.0"
+    react "^16.12.0"
+    react-dom "^16.12.0"
 
 "@types/babel__core@^7.1.0":
   version "7.1.3"

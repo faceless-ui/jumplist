@@ -1,6 +1,6 @@
 {
   "name": "@trbl/react-jumplist",
-  "version": "0.0.9",
+  "version": "1.0.0",
   "main": "dist/build.bundle.js",
   "repository": "git@github.com:trouble/react-jumplist.git",
   "description": "Jump, and you will find out how to unfold your wings as you fall.",
@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@trbl/react-html-element": "^1.0.1",
-    "@trbl/react-node-position": "^0.0.8",
+    "@trbl/react-node-position": "^1.1.1",
     "animated-scroll-to": "^2.0.4",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
@@ -34,6 +34,7 @@
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-optional-chaining": "^7.8.3",
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
     "@trbl/eslint-config": "^1.2.4",

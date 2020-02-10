@@ -12,65 +12,58 @@ class JumplistProvider extends Component {
     };
   }
 
-  syncNode = (props) => {
+  syncNode = (args) => {
     const {
       id,
-      isInFrame,
-      totalXOffset,
-      totalYOffset,
-    } = props;
+      isVisible,
+      totalOffsetLeft,
+      totalOffsetTop,
+    } = args;
 
-    // The setState updater function is needed here (currentState),
-    // so that batched setState calls spread the state accurately.
     this.setState((currentState) => {
       const { nodes } = currentState;
       const withSyncedNode = {
         ...nodes,
         [id]: {
-          isInFrame,
-          totalXOffset,
-          totalYOffset,
+          isVisible,
+          totalOffsetLeft,
+          totalOffsetTop,
         },
       };
+
       return { nodes: withSyncedNode };
     });
   }
 
   removeNode = (id) => {
-    const { nodes } = this.state;
-    const withRemovedNode = { ...nodes };
-    delete withRemovedNode[id];
+    this.setState((currentState) => {
+      const { nodes } = currentState;
+      const withRemovedNode = { ...nodes };
+      delete withRemovedNode[id];
 
-    this.setState({ nodes: withRemovedNode });
+      return { nodes: withRemovedNode };
+    });
   }
 
   render() {
     const {
       classPrefix,
-      frameOffset,
-      xScrollOffset,
-      yScrollOffset,
       children,
     } = this.props;
 
     const { nodes } = this.state;
 
     return (
-      <NodePositionProvider frameOffset={frameOffset}>
+      <NodePositionProvider>
         <JumplistContext.Provider
           value={{
-            jumplistContext: {
-              classPrefix: classPrefix || defaultClassPrefix,
-              frameOffset,
-              xScrollOffset,
-              yScrollOffset,
-              nodes,
-              syncNode: this.syncNode,
-              removeNode: this.removeNode,
-            },
+            classPrefix: classPrefix || defaultClassPrefix,
+            nodes,
+            syncNode: this.syncNode,
+            removeNode: this.removeNode,
           }}
         >
-          {children}
+          {children && children}
         </JumplistContext.Provider>
       </NodePositionProvider>
     );
@@ -79,17 +72,12 @@ class JumplistProvider extends Component {
 
 JumplistProvider.defaultProps = {
   classPrefix: '',
-  frameOffset: 0,
-  xScrollOffset: 0,
-  yScrollOffset: 0,
+  children: undefined,
 };
 
 JumplistProvider.propTypes = {
   classPrefix: PropTypes.string,
-  frameOffset: PropTypes.number,
-  xScrollOffset: PropTypes.number,
-  yScrollOffset: PropTypes.number,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 export default JumplistProvider;
