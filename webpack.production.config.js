@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = [{
+  devtool: 'source-map',
   mode: 'production',
   entry: './src/index.js',
   output: {
@@ -17,6 +18,14 @@ module.exports = [{
         loaders: ['babel-loader'],
       },
     ],
+  },
+  externals: {
+    '@trbl/react-html-element': '@trbl/react-html-element',
+    '@trbl/react-node-position': '@trbl/react-node-position',
+    'animated-scroll-to': 'animated-scroll-to',
+    'prop-types': 'prop-types',
+    react: 'react',
+    'react-dom': 'react-dom',
   },
 }, {
   devtool: 'source-map',
