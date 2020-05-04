@@ -4,13 +4,15 @@
 
 # React Jumplist
 
-Jump, and you will find out how to unfold your wings as you fall.
+## Highlights
 
 ## Quick Start
 
 ### Installation
 
 ```bash
+$ npm i @trbl/react-jumplist
+$ # or
 $ yarn add @trbl/react-jumplist
 ```
 
@@ -18,37 +20,36 @@ $ yarn add @trbl/react-jumplist
 
 ```jsx
   import React from 'react';
-  import { JumplistProvider, JumplistButton, JumplistNode } from '@trbl/react-jumplist';
+  import {
+    JumplistProvider,
+    JumplistButton,
+    JumplistNode
+  } from '@trbl/react-jumplist';
 
-  const App = () => {
-    return (
-      <JumplistProvider>
-        <JumplistButton targetID="yourID">
-          ...
-        </JumplistButton>
-        <JumplistNode id="yourID">
-          ...
-        </JumplistNode>
-      </JumplistProvider>
-    )
-  }
+  const App = () => (
+    <JumplistProvider>
+      <JumplistButton targetID="yourID">
+        ...
+      </JumplistButton>
+      <JumplistNode id="yourID">
+        ...
+      </JumplistNode>
+    </JumplistProvider>
+  );
 
   export default App;
 ```
 
 ## Demo
 
-To demo locally, clone the repo and
-
 ```bash
+$ git clone git@github.com:trouble/react-jumplist.git
 $ yarn
 $ yarn dev
 $ open http://localhost:3000
 ```
 
-## Documentation
-
-All available props can be found via the references below:
+## API
 
   - [JumplistButton](./src/JumplistButton/README.md)
   - [JumplistNode](./src/JumplistNode/README.md)
