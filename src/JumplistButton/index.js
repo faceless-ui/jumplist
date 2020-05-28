@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import animateScrollTo from 'animated-scroll-to';
-import HTMLElement from '@trbl/react-html-element';
+import HTMLElement from '@faceless-ui/html-element';
 import JumplistContext from '../JumplistProvider/context';
 
 const JumplistButton = (props) => {

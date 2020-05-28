@@ -20,8 +20,8 @@ module.exports = [{
     ],
   },
   externals: {
-    '@trbl/react-html-element': '@trbl/react-html-element',
-    '@trbl/react-node-position': '@trbl/react-node-position',
+    '@faceless-ui/html-element': '@faceless-ui/html-element',
+    '@faceless-ui/node-position': '@faceless-ui/node-position',
     'animated-scroll-to': 'animated-scroll-to',
     'prop-types': 'prop-types',
     react: 'react',

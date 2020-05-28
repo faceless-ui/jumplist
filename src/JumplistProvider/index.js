@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { NodePositionProvider } from '@trbl/react-node-position';
+import { NodePositionProvider } from '@faceless-ui/node-position';
 import JumplistContext from './context';
 import defaultClassPrefix from '../defaultClassPrefix';
 

@@ -1,8 +1,8 @@
 {
-  "name": "@trbl/react-jumplist",
+  "name": "@faceless-ui/jumplist",
   "version": "1.0.0",
   "main": "dist/build.bundle.js",
-  "repository": "git@github.com:trouble/react-jumplist.git",
+  "repository": "git@github.com:faceless-ui/jumplist.git",
   "description": "Jump, and you will find out how to unfold your wings as you fall.",
   "author": "<dev@trbl.design>",
   "license": "MIT",
@@ -25,8 +25,8 @@
     "react-dom": "^16.8.0"
   },
   "dependencies": {
-    "@trbl/react-html-element": "^1.0.1",
-    "@trbl/react-node-position": "^1.1.1",
+    "@faceless-ui/html-element": "^1.0.1",
+    "@faceless-ui/node-position": "^1.1.1",
     "animated-scroll-to": "^2.0.4",
     "prop-types": "^15.7.2"
   },

@@ -1,5 +1,5 @@
-[![NPM](https://img.shields.io/npm/v/@trbl/react-jumplist)](https://www.npmjs.com/@trbl/react-jumplist)
-![Bundle Size](https://img.shields.io/bundlephobia/minzip/@trbl/react-jumplist?label=zipped)
+[![NPM](https://img.shields.io/npm/v/@faceless-ui/jumplist)](https://www.npmjs.com/@faceless-ui/jumplist)
+![Bundle Size](https://img.shields.io/bundlephobia/minzip/@faceless-ui/jumplist?label=zipped)
 [![Supported by TRBL](https://img.shields.io/badge/supported_by-TRBL-black)](https://github.com/trouble)
 
 # React Jumplist
@@ -11,9 +11,9 @@
 ### Installation
 
 ```bash
-$ npm i @trbl/react-jumplist
+$ npm i @faceless-ui/jumplist
 $ # or
-$ yarn add @trbl/react-jumplist
+$ yarn add @faceless-ui/jumplist
 ```
 
 ### Composition
@@ -24,7 +24,7 @@ $ yarn add @trbl/react-jumplist
     JumplistProvider,
     JumplistButton,
     JumplistNode
-  } from '@trbl/react-jumplist';
+  } from '@faceless-ui/jumplist';
 
   const App = () => (
     <JumplistProvider>
@@ -43,7 +43,7 @@ $ yarn add @trbl/react-jumplist
 ## Demo
 
 ```bash
-$ git clone git@github.com:trouble/react-jumplist.git
+$ git clone git@github.com:faceless-ui/jumplist.git
 $ yarn
 $ yarn dev
 $ open http://localhost:3000
@@ -57,8 +57,8 @@ $ open http://localhost:3000
 
 ## Contribution
 
-[Help us,](https://github.com/trouble/.github/blob/master/CONTRIBUTING.md) or let us [help you help us](https://github.com/trouble/.github/blob/master/SUPPORT.md).
+[Help us,](https://github.com/faceless-ui/.github/blob/master/CONTRIBUTING.md) or let us [help you help us](https://github.com/faceless-ui/.github/blob/master/SUPPORT.md).
 
 ## License
 
-[MIT](https://github.com/trouble/react-jumplist/blob/master/LICENSE) Copyright (c) TRBL, LLC
+[MIT](https://github.com/faceless-ui/jumplist/blob/master/LICENSE) Copyright (c) TRBL, LLC
