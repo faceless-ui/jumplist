@@ -4,7 +4,7 @@
 
 # React Jumplist
 
-## Highlights
+Read the full documentation [here](https://faceless-ui.com/docs/jumplist).
 
 ## Quick Start
 
@@ -16,31 +16,9 @@ $ # or
 $ yarn add @faceless-ui/jumplist
 ```
 
-### Composition
-
-```jsx
-  import React from 'react';
-  import {
-    JumplistProvider,
-    JumplistButton,
-    JumplistNode
-  } from '@faceless-ui/jumplist';
-
-  const App = () => (
-    <JumplistProvider>
-      <JumplistButton targetID="yourID">
-        ...
-      </JumplistButton>
-      <JumplistNode id="yourID">
-        ...
-      </JumplistNode>
-    </JumplistProvider>
-  );
-
-  export default App;
-```
-
 ## Demo
+
+For working examples, spin up the [demo app](./demo/App.demo.js):
 
 ```bash
 $ git clone git@github.com:faceless-ui/jumplist.git
@@ -48,12 +26,6 @@ $ yarn
 $ yarn dev
 $ open http://localhost:3000
 ```
-
-## API
-
-  - [JumplistButton](./src/JumplistButton/README.md)
-  - [JumplistNode](./src/JumplistNode/README.md)
-  - [JumplistProvider](./src/JumplistProvider/README.md)
 
 ## Contribution
 

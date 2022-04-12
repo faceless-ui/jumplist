@@ -1,12 +1,24 @@
-import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import animateScrollTo from 'animated-scroll-to';
-import HTMLElement from '@faceless-ui/html-element';
-import JumplistContext from '../JumplistProvider/context';
+import { useJumplist } from '../JumplistContext';
 
-const JumplistButton = (props) => {
-  const jumplistContext = useContext(JumplistContext);
-  const { classPrefix, nodes } = jumplistContext;
+export const JumplistButton: React.FC<{
+  id?: string
+  className?: string
+  style?: React.CSSProperties
+  htmlElement?: string
+  htmlAttributes?: {
+    [key: string]: string
+  }
+  targetID?: string
+  xScrollOffset?: number
+  yScrollOffset?: number
+  children?: React.ReactNode
+}> = (props) => {
+  const {
+    nodes,
+    classPrefix
+  } = useJumplist();
 
   const {
     id,
@@ -38,8 +50,10 @@ const JumplistButton = (props) => {
     nodes[targetID]?.isVisible && `${baseClass}--target-is-visible`,
   ].filter(Boolean).join(' ');
 
+  const Tag = htmlElement as React.ElementType;
+
   return (
-    <HTMLElement
+    <Tag
       {...{
         id,
         className: mergedClasses,
@@ -52,32 +66,6 @@ const JumplistButton = (props) => {
       }}
     >
       {children && children}
-    </HTMLElement>
+    </Tag>
   );
 };
-
-JumplistButton.defaultProps = {
-  id: undefined,
-  className: undefined,
-  style: {},
-  htmlElement: 'button',
-  htmlAttributes: {},
-  targetID: '',
-  xScrollOffset: 0,
-  yScrollOffset: 0,
-  children: undefined,
-};
-
-JumplistButton.propTypes = {
-  id: PropTypes.string,
-  className: PropTypes.string,
-  style: PropTypes.shape({}),
-  htmlElement: PropTypes.string,
-  htmlAttributes: PropTypes.shape({}),
-  targetID: PropTypes.string,
-  xScrollOffset: PropTypes.number,
-  yScrollOffset: PropTypes.number,
-  children: PropTypes.node,
-};
-
-export default JumplistButton;
