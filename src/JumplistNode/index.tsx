@@ -25,6 +25,8 @@ export const JumplistNode: React.FC<{
 
   const Tag = htmlElement as React.ElementType;
 
+  // TODO: wire in the intersection observer API and sync this node's current intersection status
+
   return (
     <Tag
       {...{

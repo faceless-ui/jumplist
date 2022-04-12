@@ -1,30 +1,57 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useReducer } from 'react';
 import { JumplistContext } from '../JumplistContext';
+import { IJumplistContext, JumplistNode, JumplistNodes } from '../JumplistContext/types';
+import { jumplistReducer } from './reducer';
 
 export const JumplistProvider: React.FC<{
   children: React.ReactNode
   classPrefix?: string
+  nodes?: JumplistNodes
 }> = (props) => {
   const {
     children,
-    classPrefix
+    classPrefix,
+    nodes: nodesFromProps
   } = props;
 
-  const [nodes, setNodes] = useState([]);
+  const [nodes, dispatchNodes] = useReducer(jumplistReducer, []);
 
-  const syncNode = useCallback(() => {
-    setNodes([]);
+  const addJumplistItem = useCallback((incomingNode: JumplistNode) => {
+    dispatchNodes({
+      type: 'add',
+      payload: incomingNode
+    })
   }, [])
 
-  const removeNode = useCallback(() => {
-    setNodes([]);
+  const removeJumplistItem = useCallback((incomingID: string) => {
+    dispatchNodes({
+      type: 'remove',
+      payload: {
+        id: incomingID
+      }
+    })
   }, []);
 
-  const context = {
+  const resetJumplist = useCallback((incomingJumplist: JumplistNodes) => {
+    dispatchNodes({
+      type: 'reset',
+      // @ts-ignore TODO: type this better
+      payload: incomingJumplist
+    })
+  }, [])
+
+  useEffect(() => {
+    if (nodesFromProps) {
+      resetJumplist(nodesFromProps)
+    }
+  }, [nodesFromProps])
+
+  const context: IJumplistContext = {
     classPrefix,
-    nodes,
-    syncNode: syncNode,
-    removeNode: removeNode,
+    jumplist: nodes,
+    addJumplistItem,
+    removeJumplistItem,
+    resetJumplist
   }
 
   return (

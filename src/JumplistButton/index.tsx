@@ -16,7 +16,7 @@ export const JumplistButton: React.FC<{
   children?: React.ReactNode
 }> = (props) => {
   const {
-    nodes,
+    jumplist,
     classPrefix
   } = useJumplist();
 
@@ -33,7 +33,7 @@ export const JumplistButton: React.FC<{
   } = props;
 
   const baseClass = `${classPrefix}__jumplist-button`;
-  const targetNode = nodes[targetID];
+  const targetNode = jumplist[targetID];
 
   const scrollTo = () => {
     if (targetNode) {
@@ -47,7 +47,7 @@ export const JumplistButton: React.FC<{
   const mergedClasses = [
     baseClass,
     className,
-    nodes[targetID]?.isVisible && `${baseClass}--target-is-visible`,
+    jumplist[targetID]?.isVisible && `${baseClass}--target-is-visible`,
   ].filter(Boolean).join(' ');
 
   const Tag = htmlElement as React.ElementType;
