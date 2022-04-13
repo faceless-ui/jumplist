@@ -1,12 +1,17 @@
 import { JumplistNode, JumplistNodes } from "../JumplistContext/types";
 
 export const jumplistReducer = (state: JumplistNodes, action: {
-  type: 'sync' | 'remove' | 'reset'
-  payload: Partial<JumplistNode>
+  type: 'sync' | 'remove' | 'reset' | 'clear'
+  payload?: Partial<JumplistNode>
 }): JumplistNodes => {
-  let newState = [...state];
+  let newState = [...state || []];
 
   switch (action.type) {
+    case 'clear': {
+      newState = [];
+      break;
+    }
+
     case 'reset': {
       newState = action.payload as JumplistNodes; // TODO: type this better
       break;

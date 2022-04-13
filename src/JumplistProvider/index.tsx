@@ -48,6 +48,12 @@ export const JumplistProvider: React.FC<{
     })
   }, [])
 
+  const clearJumplist = useCallback(() => {
+    dispatchNodes({
+      type: 'clear'
+    })
+  }, [])
+
   useEffect(() => {
     if (nodesFromProps) {
       setJumplist(nodesFromProps)
@@ -60,7 +66,8 @@ export const JumplistProvider: React.FC<{
     syncJumplistItem,
     removeJumplistItem,
     setJumplist,
-    activeJumplistIndex
+    activeJumplistIndex,
+    clearJumplist
   }
 
   return (
