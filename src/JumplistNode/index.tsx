@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useJumplist } from '../JumplistContext';
+import useIntersection from './useIntersection';
 
 export const JumplistNode: React.FC<{
   id?: string
@@ -15,17 +17,31 @@ export const JumplistNode: React.FC<{
     id,
     className,
     style,
-    htmlElement,
+    htmlElement = 'div',
     htmlAttributes,
     classPrefix,
     children
   } = props;
 
+  const { syncJumplistItem } = useJumplist();
+
   const baseClass = `${classPrefix}__jumplist-node`;
 
   const Tag = htmlElement as React.ElementType;
 
-  // TODO: wire in the intersection observer API and sync this node's current intersection status
+  const nodeRef = useRef(null);
+  const { isIntersecting } = useIntersection(nodeRef);
+
+  useEffect(() => {
+    syncJumplistItem({
+      id,
+      isIntersecting
+    })
+  }, [
+    isIntersecting,
+    syncJumplistItem,
+    id
+  ]);
 
   return (
     <Tag
@@ -36,8 +52,8 @@ export const JumplistNode: React.FC<{
           className,
         ].filter(Boolean).join(' '),
         style,
-        htmlElement,
-        htmlAttributes,
+        ...htmlAttributes,
+        ref: nodeRef
       }}
     >
       {children && children}

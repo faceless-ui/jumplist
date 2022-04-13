@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "website": "https://faceless-ui.com/docs/jumplist",
+  "homepage": "https://faceless-ui.com/docs/jumplist",
   "repository": "git@github.com:faceless-ui/jumplist.git",
   "description": "A React jumplist library",
   "author": "<dev@trbl.design>",

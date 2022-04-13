@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useReducer } from 'react';
+import React, { useCallback, useEffect, useReducer, useState } from 'react';
 import { JumplistContext } from '../JumplistContext';
 import { IJumplistContext, JumplistNode, JumplistNodes } from '../JumplistContext/types';
 import { jumplistReducer } from './reducer';
@@ -15,10 +15,18 @@ export const JumplistProvider: React.FC<{
   } = props;
 
   const [nodes, dispatchNodes] = useReducer(jumplistReducer, []);
+  const [activeJumplistIndex, setActiveJumplistIndex] = useState<number | undefined>();
 
-  const addJumplistItem = useCallback((incomingNode: JumplistNode) => {
+  useEffect(() => {
+    if (nodes) {
+      const firstActive = nodes.findIndex((node) => node.isIntersecting);
+      setActiveJumplistIndex(firstActive);
+    }
+  }, [nodes])
+
+  const syncJumplistItem = useCallback((incomingNode: JumplistNode) => {
     dispatchNodes({
-      type: 'add',
+      type: 'sync',
       payload: incomingNode
     })
   }, [])
@@ -32,7 +40,7 @@ export const JumplistProvider: React.FC<{
     })
   }, []);
 
-  const resetJumplist = useCallback((incomingJumplist: JumplistNodes) => {
+  const setJumplist = useCallback((incomingJumplist: JumplistNodes) => {
     dispatchNodes({
       type: 'reset',
       // @ts-ignore TODO: type this better
@@ -42,16 +50,17 @@ export const JumplistProvider: React.FC<{
 
   useEffect(() => {
     if (nodesFromProps) {
-      resetJumplist(nodesFromProps)
+      setJumplist(nodesFromProps)
     }
   }, [nodesFromProps])
 
   const context: IJumplistContext = {
     classPrefix,
     jumplist: nodes,
-    addJumplistItem,
+    syncJumplistItem,
     removeJumplistItem,
-    resetJumplist
+    setJumplist,
+    activeJumplistIndex
   }
 
   return (

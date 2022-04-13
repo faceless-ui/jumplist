@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import { useJumplist } from '../../src/JumplistContext';
+import { JumplistNode } from '../../src/JumplistNode';
 
 const initialJumplist = [
   {
@@ -13,21 +14,25 @@ const initialJumplist = [
   {
     label: 'Third Block',
     id: '3'
+  },
+  {
+    label: 'Fourth Block',
+    id: '4'
   }
 ]
 
 export const JumplistDemo: React.FC = () => {
   const {
-    resetJumplist,
+    setJumplist,
   } = useJumplist();
 
   useEffect(() => {
-    resetJumplist(initialJumplist)
-  }, [resetJumplist])
+    setJumplist(initialJumplist)
+  }, [setJumplist])
 
   return (
     <Fragment>
-      <div
+      <JumplistNode
         id="1"
         style={{
           height: '75vh',
@@ -36,8 +41,8 @@ export const JumplistDemo: React.FC = () => {
         }}
       >
         This is the first block
-      </div>
-      <div
+      </JumplistNode>
+      <JumplistNode
         id="2"
         style={{
           height: '75vh',
@@ -46,8 +51,8 @@ export const JumplistDemo: React.FC = () => {
         }}
       >
         This is the second block
-      </div>
-      <div
+      </JumplistNode>
+      <JumplistNode
         id="3"
         style={{
           height: '75vh',
@@ -56,7 +61,17 @@ export const JumplistDemo: React.FC = () => {
         }}
       >
         This is the third block
-      </div>
+      </JumplistNode>
+      <JumplistNode
+        id="4"
+        style={{
+          height: '75vh',
+          width: '100%',
+          backgroundColor: 'green'
+        }}
+      >
+        This is the fourth block
+      </JumplistNode>
     </Fragment>
   )
 };
