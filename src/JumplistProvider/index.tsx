@@ -15,14 +15,21 @@ export const JumplistProvider: React.FC<{
   } = props;
 
   const [nodes, dispatchNodes] = useReducer(jumplistReducer, []);
-  const [activeJumplistIndex, setActiveJumplistIndex] = useState<number | undefined>();
+  const [currentJumplistIndex, setCurrentJumplistIndex] = useState<number | undefined>(); // could be -1 if no nodes are intersecting
+  const [activeJumplistIndex, setActiveJumplistIndex] = useState<number | undefined>(); // a memoized version of `activeJumplistIndex` to track the last-known index
 
   useEffect(() => {
     if (nodes) {
       const firstActive = nodes.findIndex((node) => node.isIntersecting);
-      setActiveJumplistIndex(firstActive);
+      setCurrentJumplistIndex(firstActive);
     }
   }, [nodes])
+
+  useEffect(() => {
+    if (currentJumplistIndex > -1) {
+      setActiveJumplistIndex(currentJumplistIndex);
+    }
+  }, [currentJumplistIndex])
 
   const syncJumplistItem = useCallback((incomingNode: JumplistNode) => {
     dispatchNodes({
@@ -66,6 +73,7 @@ export const JumplistProvider: React.FC<{
     syncJumplistItem,
     removeJumplistItem,
     setJumplist,
+    currentJumplistIndex,
     activeJumplistIndex,
     clearJumplist
   }

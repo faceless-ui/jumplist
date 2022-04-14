@@ -4,6 +4,8 @@ import { useJumplist } from '../src/JumplistContext';
 export const Header = () => {
   const {
     jumplist,
+    activeJumplistIndex,
+    currentJumplistIndex
   } = useJumplist();
 
   const hasJumplist = Array.isArray(jumplist) && jumplist.length > 0;
@@ -20,6 +22,11 @@ export const Header = () => {
     >
       <div>
         Jumplist
+        &nbsp;
+        &mdash;
+        {`active: ${activeJumplistIndex}`}
+        &nbsp;
+        {`current: ${currentJumplistIndex}`}
         &nbsp;
         &mdash;
         &nbsp;

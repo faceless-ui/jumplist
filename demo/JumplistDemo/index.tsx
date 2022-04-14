@@ -52,6 +52,7 @@ export const JumplistDemo: React.FC = () => {
       >
         This is the second block
       </JumplistNode>
+      <div style={{ height: '100vh' }} />
       <JumplistNode
         id="3"
         style={{
@@ -71,6 +72,16 @@ export const JumplistDemo: React.FC = () => {
         }}
       >
         This is the fourth block
+      </JumplistNode>
+      <JumplistNode
+        id="5"
+        style={{
+          height: '75vh',
+          width: '100%',
+          backgroundColor: 'tan'
+        }}
+      >
+        This is the fifth block
       </JumplistNode>
     </Fragment>
   )
