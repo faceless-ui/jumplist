@@ -13,6 +13,7 @@ export interface IJumplistContext {
   syncJumplistItem: (node: JumplistNode) => void // eslint-disable-line no-unused-vars
   removeJumplistItem: (id: string) => void // eslint-disable-line no-unused-vars
   activeJumplistIndex?: number
+  setActiveJumplistIndex: (index: number) => void // eslint-disable-line no-unused-vars
   currentJumplistIndex?: number
   clearJumplist: () => void // eslint-disable-line no-unused-vars
 }

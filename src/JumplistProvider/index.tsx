@@ -75,6 +75,7 @@ export const JumplistProvider: React.FC<{
     setJumplist,
     currentJumplistIndex,
     activeJumplistIndex,
+    setActiveJumplistIndex,
     clearJumplist
   }
 

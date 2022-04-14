@@ -24,11 +24,22 @@ const initialJumplist = [
 export const JumplistDemo: React.FC = () => {
   const {
     setJumplist,
+    currentJumplistIndex,
+    setActiveJumplistIndex
   } = useJumplist();
 
   useEffect(() => {
     setJumplist(initialJumplist)
   }, [setJumplist])
+
+  useEffect(() => {
+    if (currentJumplistIndex === -1) {
+      setActiveJumplistIndex(4);
+    }
+  }, [
+    currentJumplistIndex,
+    setActiveJumplistIndex
+  ])
 
   return (
     <Fragment>
