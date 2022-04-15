@@ -17,19 +17,21 @@ export const Header = () => {
         alignItems: 'center',
         marginBottom: '10px',
         position: 'sticky',
-        top: '10px'
+        top: '0',
+        width: '100%'
       }}
     >
       <div>
-        Jumplist
-        &nbsp;
-        &mdash;
-        {`active: ${activeJumplistIndex}`}
-        &nbsp;
-        {`current: ${currentJumplistIndex}`}
-        &nbsp;
-        &mdash;
-        &nbsp;
+        <span>
+          Jumplist
+          &nbsp;
+          &mdash;
+          &nbsp;
+          {`Active Index: ${activeJumplistIndex}, Current Index: ${currentJumplistIndex}`}
+          &nbsp;
+          &mdash;
+          &nbsp;
+        </span>
       </div>
       {hasJumplist && (
         <div

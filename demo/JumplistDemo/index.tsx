@@ -24,75 +24,79 @@ const initialJumplist = [
 export const JumplistDemo: React.FC = () => {
   const {
     setJumplist,
-    currentJumplistIndex,
-    setActiveJumplistIndex
   } = useJumplist();
 
   useEffect(() => {
     setJumplist(initialJumplist)
   }, [setJumplist])
 
-  useEffect(() => {
-    if (currentJumplistIndex === -1) {
-      setActiveJumplistIndex(4);
-    }
-  }, [
-    currentJumplistIndex,
-    setActiveJumplistIndex
-  ])
+  // useEffect(() => {
+  //   if (currentJumplistIndex === -1) {
+  //     setActiveJumplistIndex(4);
+  //   }
+  // }, [
+  //   currentJumplistIndex,
+  //   setActiveJumplistIndex
+  // ])
 
   return (
     <Fragment>
+      <div style={{ height: '200px' }} />
       <JumplistNode
         id="1"
-        style={{
-          height: '75vh',
-          width: '100%',
-          backgroundColor: 'gray'
-        }}
       >
-        This is the first block
+        <div
+          style={{
+            height: '200px',
+            backgroundColor: 'gray'
+          }}
+        />
       </JumplistNode>
+      <div style={{ height: '1000px' }} />
       <JumplistNode
         id="2"
-        style={{
-          height: '75vh',
-          width: '100%',
-          backgroundColor: 'blue'
-        }}
       >
-        This is the second block
+        <div
+          style={{
+            height: '75vh',
+            width: '100%',
+            backgroundColor: 'blue'
+          }}
+        />
       </JumplistNode>
       <div style={{ height: '100vh' }} />
       <JumplistNode
         id="3"
-        style={{
-          height: '75vh',
-          width: '100%',
-          backgroundColor: 'pink'
-        }}
       >
-        This is the third block
+        <div
+          style={{
+            height: '75vh',
+            width: '100%',
+            backgroundColor: 'pink'
+          }}
+        />
       </JumplistNode>
       <JumplistNode
         id="4"
-        style={{
-          height: '75vh',
-          width: '100%',
-          backgroundColor: 'green'
-        }}
       >
-        This is the fourth block
+        <div
+          style={{
+            height: '500px',
+            width: '100%',
+            backgroundColor: 'green'
+          }}
+        />
       </JumplistNode>
       <JumplistNode
         id="5"
-        style={{
-          height: '75vh',
-          width: '100%',
-          backgroundColor: 'tan'
-        }}
       >
-        This is the fifth block
+        <div
+          style={{
+            height: '75vh',
+            width: '100%',
+            backgroundColor: 'tan'
+          }}
+        />
       </JumplistNode>
     </Fragment>
   )

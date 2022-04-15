@@ -7,11 +7,13 @@ export const JumplistProvider: React.FC<{
   children: React.ReactNode
   classPrefix?: string
   nodes?: JumplistNodes
+  rootMargin?: string
 }> = (props) => {
   const {
     children,
     classPrefix,
-    nodes: nodesFromProps
+    nodes: nodesFromProps,
+    rootMargin
   } = props;
 
   const [nodes, dispatchNodes] = useReducer(jumplistReducer, []);
@@ -76,7 +78,8 @@ export const JumplistProvider: React.FC<{
     currentJumplistIndex,
     activeJumplistIndex,
     setActiveJumplistIndex,
-    clearJumplist
+    clearJumplist,
+    rootMargin
   }
 
   return (

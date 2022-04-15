@@ -4,7 +4,9 @@ import { Header } from './Header';
 import { JumplistDemo } from './JumplistDemo';
 
 const App: React.FC = () => (
-  <JumplistProvider>
+  <JumplistProvider
+    rootMargin="-100px 0px 0px 0px"
+  >
     <Header />
     <JumplistDemo />
   </JumplistProvider>
