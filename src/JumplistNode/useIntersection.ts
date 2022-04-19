@@ -32,7 +32,7 @@ const useIntersection = (
       }, {
         root: root?.current || null,
         rootMargin: rootMargin || '0px',
-        threshold: threshold || 0.05,
+        threshold: threshold || 0,
       });
 
       observer.observe(currentRef);

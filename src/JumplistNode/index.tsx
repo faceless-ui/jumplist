@@ -3,7 +3,8 @@ import { useJumplist } from '../JumplistContext';
 import useIntersection from './useIntersection';
 
 export const JumplistNode: React.FC<{
-  id: string
+  id?: string
+  nodeID: string
   className?: string
   style?: React.CSSProperties
   htmlElement?: React.ElementType
@@ -15,6 +16,7 @@ export const JumplistNode: React.FC<{
 }> = (props) => {
   const {
     id,
+    nodeID,
     className,
     style,
     htmlElement = 'div',
@@ -25,7 +27,8 @@ export const JumplistNode: React.FC<{
 
   const {
     syncJumplistItem,
-    rootMargin
+    rootMargin,
+    threshold
   } = useJumplist();
 
   const baseClass = `${classPrefix}__jumplist-node`;
@@ -34,18 +37,19 @@ export const JumplistNode: React.FC<{
 
   const nodeRef = useRef(null);
   const { isIntersecting } = useIntersection(nodeRef, {
-    rootMargin
+    rootMargin,
+    threshold
   });
 
   useEffect(() => {
     syncJumplistItem({
-      id,
+      id: nodeID,
       isIntersecting
     })
   }, [
     isIntersecting,
     syncJumplistItem,
-    id
+    nodeID
   ]);
 
   return (

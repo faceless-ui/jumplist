@@ -43,7 +43,7 @@ export const JumplistDemo: React.FC = () => {
     <Fragment>
       <div style={{ height: '200px' }} />
       <JumplistNode
-        id="1"
+        nodeID="1"
       >
         <div
           style={{
@@ -54,7 +54,7 @@ export const JumplistDemo: React.FC = () => {
       </JumplistNode>
       <div style={{ height: '1000px' }} />
       <JumplistNode
-        id="2"
+        nodeID="2"
       >
         <div
           style={{
@@ -66,7 +66,7 @@ export const JumplistDemo: React.FC = () => {
       </JumplistNode>
       <div style={{ height: '100vh' }} />
       <JumplistNode
-        id="3"
+        nodeID="3"
       >
         <div
           style={{
@@ -77,7 +77,7 @@ export const JumplistDemo: React.FC = () => {
         />
       </JumplistNode>
       <JumplistNode
-        id="4"
+        nodeID="4"
       >
         <div
           style={{
@@ -88,7 +88,7 @@ export const JumplistDemo: React.FC = () => {
         />
       </JumplistNode>
       <JumplistNode
-        id="5"
+        nodeID="5"
       >
         <div
           style={{

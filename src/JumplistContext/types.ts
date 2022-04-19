@@ -17,4 +17,5 @@ export interface IJumplistContext {
   currentJumplistIndex?: number
   clearJumplist: () => void // eslint-disable-line no-unused-vars
   rootMargin?: string
+  threshold?: number
 }
