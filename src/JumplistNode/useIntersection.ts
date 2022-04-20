@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
 type Options = {
-  root?: React.MutableRefObject<HTMLElement>,
+  root?: React.MutableRefObject<HTMLElement | null>,
   rootMargin?: string,
   threshold?: number
 }
 
 const useIntersection = (
-  ref: React.MutableRefObject<HTMLElement>,
+  ref: React.MutableRefObject<HTMLElement | null>,
   options?: Options,
 ): IntersectionObserverEntry => {
   const {
@@ -19,7 +19,7 @@ const useIntersection = (
   const [intersection, setIntersection] = useState({} as IntersectionObserverEntry);
 
   useEffect(() => {
-    let observer;
+    let observer: IntersectionObserver;
     const {
       current: currentRef,
     } = ref;
@@ -39,7 +39,7 @@ const useIntersection = (
     }
 
     return () => {
-      if (observer) {
+      if (observer && currentRef) {
         observer.unobserve(currentRef);
       }
     };

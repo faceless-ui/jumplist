@@ -5,19 +5,19 @@ import { JumplistNode } from '../../src/JumplistNode';
 const initialJumplist = [
   {
     label: 'First Block',
-    id: '1'
+    nodeID: '1'
   },
   {
     label: 'Second Block',
-    id: '2'
+    nodeID: '2'
   },
   {
     label: 'Third Block',
-    id: '3'
+    nodeID: '3'
   },
   {
     label: 'Fourth Block',
-    id: '4'
+    nodeID: '4'
   }
 ]
 

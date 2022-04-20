@@ -1,9 +1,22 @@
-import { JumplistNode, JumplistNodes } from "../JumplistContext/types";
+import { JumplistNode, JumplistNodes } from "../JumplistContext";
 
-export const jumplistReducer = (state: JumplistNodes, action: {
-  type: 'sync' | 'remove' | 'reset' | 'clear'
-  payload?: Partial<JumplistNode>
-}): JumplistNodes => {
+type Action = {
+  type: 'sync'
+  payload: JumplistNode
+} | {
+  type: 'remove',
+  payload: JumplistNode
+} | {
+  type: 'reset',
+  payload: JumplistNodes
+} | {
+  type: 'clear'
+}
+
+export const jumplistReducer = (
+  state: JumplistNodes,
+  action: Action
+): JumplistNodes => {
   let newState = [...state || []];
 
   switch (action.type) {
@@ -20,11 +33,11 @@ export const jumplistReducer = (state: JumplistNodes, action: {
     case 'sync': {
       const {
         payload: {
-          id: incomingID,
+          nodeID: incomingID,
         }
       } = action;
 
-      const indexOfItem = newState.findIndex(item => item.id === incomingID);
+      const indexOfItem = newState.findIndex(item => item.nodeID === incomingID);
       const itemExists = indexOfItem > -1;
 
       if (itemExists) {
@@ -40,10 +53,10 @@ export const jumplistReducer = (state: JumplistNodes, action: {
     case 'remove': {
       const {
         payload: {
-          id: incomingID
+          nodeID: incomingID
         }
       } = action;
-      const indexOfItem = newState.findIndex(item => item.id === incomingID);
+      const indexOfItem = newState.findIndex(item => item.nodeID === incomingID);
       const foundItem = indexOfItem > -1;
       if (foundItem) {
         newState = newState.splice(indexOfItem, 1);

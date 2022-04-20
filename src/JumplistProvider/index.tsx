@@ -1,14 +1,16 @@
 import React, { useCallback, useEffect, useReducer, useState } from 'react';
 import { JumplistContext } from '../JumplistContext';
-import { IJumplistContext, JumplistNode, JumplistNodes } from '../JumplistContext/types';
+import { IJumplistContext, JumplistNode, JumplistNodes } from '../JumplistContext';
 import { jumplistReducer } from './reducer';
 
+export type ChildFunction = (context: IJumplistContext) => React.ReactNode; // eslint-disable-line no-unused-vars
+
 export const JumplistProvider: React.FC<{
-  children: React.ReactNode
   classPrefix?: string
   nodes?: JumplistNodes
-  rootMargin?: string,
+  rootMargin?: string
   threshold?: number
+  children: React.ReactNode | ChildFunction
 }> = (props) => {
   const {
     children,
@@ -30,7 +32,7 @@ export const JumplistProvider: React.FC<{
   }, [nodes])
 
   useEffect(() => {
-    if (currentJumplistIndex > -1) {
+    if (currentJumplistIndex !== undefined && currentJumplistIndex > -1) {
       setActiveJumplistIndex(currentJumplistIndex);
     }
   }, [currentJumplistIndex])
@@ -46,7 +48,7 @@ export const JumplistProvider: React.FC<{
     dispatchNodes({
       type: 'remove',
       payload: {
-        id: incomingID
+        nodeID: incomingID
       }
     })
   }, []);

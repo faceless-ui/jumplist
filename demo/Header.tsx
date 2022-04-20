@@ -43,7 +43,7 @@ export const Header = () => {
           {jumplist.map((item, index) => {
             const {
               label,
-              id,
+              nodeID,
               isIntersecting
             } = item;
 
@@ -51,7 +51,7 @@ export const Header = () => {
 
             return (
               <div key={index}>
-                <a href={`#${id}`}>
+                <a href={`#${nodeID}`}>
                   {`${label} ${isIntersecting ? 'isIntersecting ' : ''}`}
                 </a>
                 {!isLast && (

@@ -43,7 +43,7 @@ export const JumplistNode: React.FC<{
 
   useEffect(() => {
     syncJumplistItem({
-      id: nodeID,
+      nodeID,
       isIntersecting
     })
   }, [
