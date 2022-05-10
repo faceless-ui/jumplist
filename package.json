@@ -6,7 +6,10 @@
   "homepage": "https://faceless-ui.com/docs/jumplist",
   "repository": "git@github.com:faceless-ui/jumplist.git",
   "description": "A React library for creating powerful jumplists",
-  "author": "<dev@trbl.design>",
+  "author": "Jacob Fletcher <jacobsfletch@gmail.com> (https://jacobsfletch.com)",
+  "contributors": [
+    "TRBL <dev@trbl.design> (https://trbl.design)"
+  ],
   "license": "MIT",
   "keywords": [
     "react",

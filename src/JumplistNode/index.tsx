@@ -1,28 +1,22 @@
-import React, { useEffect, useRef } from 'react';
+import React, { HTMLProps, useEffect, useRef } from 'react';
 import { useJumplist } from '../JumplistContext';
 import useIntersection from './useIntersection';
 
-export const JumplistNode: React.FC<{
-  id?: string
+export interface JumplistNodeProps extends HTMLProps<HTMLElement> {
   nodeID: string
-  className?: string
-  style?: React.CSSProperties
   htmlElement?: React.ElementType
-  htmlAttributes?: {
-    [key: string]: string
-  }
   classPrefix?: string
   children: React.ReactNode
-}> = (props) => {
+}
+
+export const JumplistNode: React.FC<JumplistNodeProps> = (props) => {
   const {
-    id,
     nodeID,
-    className,
-    style,
-    htmlElement = 'div',
-    htmlAttributes,
+    htmlElement: Tag = 'div',
     classPrefix,
-    children
+    children,
+    className,
+    ...rest
   } = props;
 
   const {
@@ -32,8 +26,6 @@ export const JumplistNode: React.FC<{
   } = useJumplist();
 
   const baseClass = `${classPrefix}__jumplist-node`;
-
-  const Tag = htmlElement as React.ElementType;
 
   const nodeRef = useRef(null);
   const { isIntersecting } = useIntersection(nodeRef, {
@@ -55,13 +47,11 @@ export const JumplistNode: React.FC<{
   return (
     <Tag
       {...{
-        id,
         className: [
           baseClass,
           className,
         ].filter(Boolean).join(' '),
-        style,
-        ...htmlAttributes,
+        ...rest,
         ref: nodeRef
       }}
     >
