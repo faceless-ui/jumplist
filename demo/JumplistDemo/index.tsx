@@ -46,6 +46,7 @@ export const JumplistDemo: React.FC = () => {
         nodeID="1"
       >
         <div
+          id="1"
           style={{
             height: '200px',
             backgroundColor: 'gray'
@@ -57,6 +58,7 @@ export const JumplistDemo: React.FC = () => {
         nodeID="2"
       >
         <div
+          id="2"
           style={{
             height: '75vh',
             width: '100%',
@@ -69,6 +71,7 @@ export const JumplistDemo: React.FC = () => {
         nodeID="3"
       >
         <div
+          id="3"
           style={{
             height: '75vh',
             width: '100%',
@@ -80,6 +83,7 @@ export const JumplistDemo: React.FC = () => {
         nodeID="4"
       >
         <div
+          id="4"
           style={{
             height: '500px',
             width: '100%',
@@ -91,6 +95,7 @@ export const JumplistDemo: React.FC = () => {
         nodeID="5"
       >
         <div
+          id="5"
           style={{
             height: '75vh',
             width: '100%',

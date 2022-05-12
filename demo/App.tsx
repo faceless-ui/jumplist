@@ -6,6 +6,7 @@ import { JumplistDemo } from './JumplistDemo';
 const App: React.FC = () => (
   <JumplistProvider
     rootMargin="-100px 0px 0px 0px"
+    smoothScroll
   >
     <Header />
     <JumplistDemo />

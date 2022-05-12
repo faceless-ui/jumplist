@@ -11,13 +11,15 @@ export const JumplistProvider: React.FC<{
   rootMargin?: string
   threshold?: number
   children: React.ReactNode | ChildFunction
+  smoothScroll?: boolean
 }> = (props) => {
   const {
     children,
     classPrefix,
     nodes: nodesFromProps,
     rootMargin,
-    threshold
+    threshold,
+    smoothScroll
   } = props;
 
   const [nodes, dispatchNodes] = useReducer(jumplistReducer, []);
@@ -72,6 +74,17 @@ export const JumplistProvider: React.FC<{
       setJumplist(nodesFromProps)
     }
   }, [nodesFromProps])
+
+  useEffect(() => {
+    if (smoothScroll) {
+      document.documentElement.style.scrollBehavior = 'smooth';
+    } else {
+      document.documentElement.style.removeProperty('scroll-behavior');
+    }
+    return () => {
+      document.documentElement.style.removeProperty('scroll-behavior');
+    }
+  }, [smoothScroll])
 
   const context: IJumplistContext = {
     classPrefix,
