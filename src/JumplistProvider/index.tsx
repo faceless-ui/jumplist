@@ -25,6 +25,7 @@ export const JumplistProvider: React.FC<{
   const [nodes, dispatchNodes] = useReducer(jumplistReducer, []);
   const [currentJumplistIndex, setCurrentJumplistIndex] = useState<number | undefined>(); // could be -1 if no nodes are intersecting
   const [activeJumplistIndex, setActiveJumplistIndex] = useState<number | undefined>(); // a memoized version of `activeJumplistIndex` to track the last-known index
+  const [scrollTarget, setScrollTarget] = useState<string | undefined>(); // when defined, the matching jumplist node will scroll itself into view
 
   useEffect(() => {
     if (nodes) {
@@ -75,6 +76,10 @@ export const JumplistProvider: React.FC<{
     }
   }, [nodesFromProps])
 
+  const clearScrollTarget = useCallback(() => {
+    setScrollTarget(undefined);
+  }, [])
+
   useEffect(() => {
     if (smoothScroll) {
       document.documentElement.style.scrollBehavior = 'smooth';
@@ -85,6 +90,10 @@ export const JumplistProvider: React.FC<{
       document.documentElement.style.removeProperty('scroll-behavior');
     }
   }, [smoothScroll])
+
+  const scrollToID = useCallback((incomingID: string) => {
+    setScrollTarget(incomingID);
+  }, [])
 
   const context: IJumplistContext = {
     classPrefix,
@@ -97,7 +106,10 @@ export const JumplistProvider: React.FC<{
     setActiveJumplistIndex,
     clearJumplist,
     rootMargin,
-    threshold
+    threshold,
+    scrollTarget,
+    scrollToID,
+    clearScrollTarget
   }
 
   return (

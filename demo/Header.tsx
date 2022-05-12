@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { useJumplist } from '../src/JumplistContext';
+import { JumplistButton, useJumplist } from '../src';
 
 export const Header = () => {
   const {
@@ -64,6 +64,16 @@ export const Header = () => {
           })}
         </div>
       )}
+      <JumplistButton
+        direction="prev"
+      >
+        Prev
+      </JumplistButton>
+      <JumplistButton
+        direction="next"
+      >
+        Next
+      </JumplistButton>
     </div>
   )
 }

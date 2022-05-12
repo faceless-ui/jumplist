@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
-import { useJumplist } from '../../src/JumplistContext';
-import { JumplistNode } from '../../src/JumplistNode';
+import { JumplistNode, useJumplist } from '../../src';
 
 const initialJumplist = [
   {

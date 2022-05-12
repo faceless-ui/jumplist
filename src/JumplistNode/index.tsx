@@ -5,7 +5,6 @@ import useIntersection from './useIntersection';
 export interface JumplistNodeProps extends HTMLProps<HTMLElement> {
   nodeID: string
   htmlElement?: React.ElementType
-  classPrefix?: string
   children: React.ReactNode
 }
 
@@ -13,21 +12,19 @@ export const JumplistNode: React.FC<JumplistNodeProps> = (props) => {
   const {
     nodeID,
     htmlElement: Tag = 'div',
-    classPrefix,
     children,
-    className,
     ...rest
   } = props;
 
   const {
     syncJumplistItem,
     rootMargin,
-    threshold
+    threshold,
+    scrollTarget,
+    clearScrollTarget
   } = useJumplist();
 
-  const baseClass = `${classPrefix}__jumplist-node`;
-
-  const nodeRef = useRef(null);
+  const nodeRef = useRef<HTMLElement>(null);
   const { isIntersecting } = useIntersection(nodeRef, {
     rootMargin,
     threshold
@@ -44,16 +41,24 @@ export const JumplistNode: React.FC<JumplistNodeProps> = (props) => {
     nodeID
   ]);
 
+  useEffect(() => {
+    if (scrollTarget !== undefined && scrollTarget === nodeID) {
+      const currentNode = nodeRef.current;
+      if (currentNode) {
+        currentNode.scrollIntoView();
+        clearScrollTarget();
+      }
+    }
+  }, [
+    scrollTarget,
+    nodeID,
+    clearScrollTarget
+  ])
+
   return (
     <Tag
-      {...{
-        className: [
-          baseClass,
-          className,
-        ].filter(Boolean).join(' '),
-        ...rest,
-        ref: nodeRef
-      }}
+      {...rest}
+      ref={nodeRef}
     >
       {children && children}
     </Tag>
