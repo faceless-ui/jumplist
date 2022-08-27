@@ -74,7 +74,10 @@ export const JumplistProvider: React.FC<{
     if (nodesFromProps) {
       setJumplist(nodesFromProps)
     }
-  }, [nodesFromProps])
+  }, [
+    nodesFromProps,
+    setJumplist
+  ])
 
   const clearScrollTarget = useCallback(() => {
     setScrollTarget(undefined);
