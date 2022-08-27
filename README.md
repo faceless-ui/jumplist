@@ -1,6 +1,5 @@
 [![NPM](https://img.shields.io/npm/v/@faceless-ui/jumplist)](https://www.npmjs.com/@faceless-ui/jumplist)
 ![Bundle Size](https://img.shields.io/bundlephobia/minzip/@faceless-ui/jumplist?label=zipped)
-[![Supported by TRBL](https://img.shields.io/badge/supported_by-TRBL-black)](https://github.com/trouble)
 
 # React Jumplist
 
