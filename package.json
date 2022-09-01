@@ -3,13 +3,25 @@
   "version": "1.0.9",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "homepage": "https://faceless-ui.com/docs/jumplist",
+  "homepage": "https://facelessui.com/docs/jumplist",
   "repository": "git@github.com:faceless-ui/jumplist.git",
   "description": "A React library for creating powerful jumplists",
-  "author": "Jacob Fletcher <jacobsfletch@gmail.com> (https://jacobsfletch.com)",
-  "contributors": [
-    "TRBL <dev@trbl.design> (https://trbl.design)"
+  "author": {
+    "email": "jacobsfletch@gmail.com",
+    "name": "Jacob Fletcher",
+    "url": "https://jacobsfletch.com"
+  },
+  "bugs": {
+    "url": "https://github.com/faceless-ui/jumplist/issues",
+    "email": "dev@facelessui.com"
+  },
+  "funding": [
+    {
+      "type": "individual",
+      "url": "https://github.com/sponsors/jacobsfletch"
+    }
   ],
+  "contributors": [],
   "license": "MIT",
   "keywords": [
     "react",
