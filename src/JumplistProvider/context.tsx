@@ -25,6 +25,8 @@ export interface IJumplistContext {
   clearScrollTarget: () => void // eslint-disable-line no-unused-vars
 }
 
+export const useJumplist = (): IJumplistContext => useContext(JumplistContext);
+
 export const JumplistContext = createContext<IJumplistContext>({} as IJumplistContext);
 
-export const useJumplist = (): IJumplistContext => useContext(JumplistContext);
+export default JumplistContext;

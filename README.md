@@ -5,9 +5,7 @@
 
 Read the full documentation [here](https://facelessui.com/docs/jumplist).
 
-## Quick Start
-
-### Installation
+## Installation
 
 ```bash
 $ npm i @faceless-ui/jumplist

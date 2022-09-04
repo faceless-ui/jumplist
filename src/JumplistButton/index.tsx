@@ -1,5 +1,5 @@
 import React, { HTMLProps, MouseEvent, useCallback } from 'react';
-import { useJumplist } from '../JumplistContext';
+import { useJumplist } from '../JumplistProvider/context';
 
 export interface JumplistButtonProps extends HTMLProps<HTMLElement> {
   htmlElement?: React.ElementType

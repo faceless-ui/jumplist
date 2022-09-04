@@ -1,4 +1,4 @@
-import { JumplistNode, JumplistNodes } from "../JumplistContext";
+import { JumplistNode, JumplistNodes } from "./context";
 
 type Action = {
   type: 'sync'

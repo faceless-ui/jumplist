@@ -1,18 +1,19 @@
 import React, { useCallback, useEffect, useReducer, useState } from 'react';
-import { JumplistContext } from '../JumplistContext';
-import { IJumplistContext, JumplistNode, JumplistNodes } from '../JumplistContext';
+import JumplistContext, { IJumplistContext, JumplistNode, JumplistNodes } from './context';
 import { jumplistReducer } from './reducer';
 
 export type ChildFunction = (context: IJumplistContext) => React.ReactNode; // eslint-disable-line no-unused-vars
 
-export const JumplistProvider: React.FC<{
+export type JumplistProviderProps = {
   classPrefix?: string
   nodes?: JumplistNodes
   rootMargin?: string
   threshold?: number
   children: React.ReactNode | ChildFunction
   smoothScroll?: boolean
-}> = (props) => {
+}
+
+export const JumplistProvider: React.FC<JumplistProviderProps> = (props) => {
   const {
     children,
     classPrefix,
@@ -29,7 +30,7 @@ export const JumplistProvider: React.FC<{
 
   useEffect(() => {
     if (nodes) {
-      const firstActive = nodes.findIndex((node) => node.isIntersecting);
+      const firstActive = nodes.findIndex((node: JumplistNode) => node.isIntersecting);
       setCurrentJumplistIndex(firstActive);
     }
   }, [nodes])
