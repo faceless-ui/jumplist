@@ -5,6 +5,7 @@ export interface JumplistButtonProps extends HTMLProps<HTMLElement> {
   htmlElement?: React.ElementType
   children?: React.ReactNode
   direction?: 'prev' | 'next'
+  nodeID?: string
 }
 
 export const JumplistButton: React.FC<JumplistButtonProps> = (props) => {
@@ -12,6 +13,7 @@ export const JumplistButton: React.FC<JumplistButtonProps> = (props) => {
     htmlElement: Tag = 'button',
     children,
     direction,
+    nodeID,
     onClick,
     ...rest
   } = props;
@@ -30,11 +32,16 @@ export const JumplistButton: React.FC<JumplistButtonProps> = (props) => {
           scrollToID(prevItem.nodeID);
         }
       }
+
       if (direction === 'next') {
         const nextItem = jumplist[activeJumplistIndex + 1];
         if (nextItem) {
           scrollToID(nextItem.nodeID);
         }
+      }
+
+      if (!direction && nodeID !== undefined) {
+        scrollToID(nodeID);
       }
     }
 
@@ -46,12 +53,20 @@ export const JumplistButton: React.FC<JumplistButtonProps> = (props) => {
     scrollToID,
     onClick,
     jumplist,
-    activeJumplistIndex
+    activeJumplistIndex,
+    nodeID
   ]);
+
+  let ariaLabel = direction === 'prev' ? 'Scroll to previous item' : 'Scroll to next item';
+  if (!direction && nodeID !== undefined) {
+    ariaLabel = `Scroll to ${nodeID}`;
+  }
 
   return (
     <Tag
+      id={nodeID ? `jumplist-button_${nodeID}` : undefined}
       type="button"
+      aria-label={ariaLabel}
       {...rest}
       onClick={handleClick}
     >
