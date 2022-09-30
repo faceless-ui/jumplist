@@ -57,6 +57,8 @@ export const JumplistNode: React.FC<JumplistNodeProps> = (props) => {
 
   return (
     <Tag
+      role="region"
+      aria-labelledby={`jumplist-button_${nodeID}`}
       {...rest}
       ref={nodeRef}
     >
