@@ -1,6 +1,29 @@
 import React, { Fragment } from 'react';
 import { JumplistButton, useJumplist } from '../src';
 
+const jumplistMenu = [
+  {
+    label: 'Section 1',
+    nodeID: '1',
+  },
+  {
+    label: 'Section 2',
+    nodeID: '2',
+  },
+  {
+    label: 'Section 3',
+    nodeID: '3',
+  },
+  {
+    label: 'Section 4',
+    nodeID: '4',
+  },
+  {
+    label: 'Section 5',
+    nodeID: '5',
+  },
+];
+
 export const Header = () => {
   const {
     jumplist,
@@ -40,12 +63,15 @@ export const Header = () => {
             alignItems: 'center',
           }}
         >
-          {jumplist.map((item, index) => {
+          {jumplistMenu.map((item, index) => {
             const {
-              label,
+              label
+            } = item;
+
+            const {
               nodeID,
               isIntersecting
-            } = item;
+            } = jumplist[index] || {};
 
             const isLast = index === jumplist.length - 1;
 
