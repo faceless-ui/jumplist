@@ -17,7 +17,6 @@ export const JumplistProvider: React.FC<JumplistProviderProps> = (props) => {
   const {
     children,
     classPrefix,
-    nodes: nodesFromProps,
     rootMargin,
     threshold,
     smoothScroll
@@ -57,28 +56,11 @@ export const JumplistProvider: React.FC<JumplistProviderProps> = (props) => {
     })
   }, []);
 
-  const setJumplist = useCallback((incomingJumplist: JumplistNodes) => {
-    dispatchNodes({
-      type: 'reset',
-      // @ts-ignore TODO: type this better
-      payload: incomingJumplist
-    })
-  }, [])
-
   const clearJumplist = useCallback(() => {
     dispatchNodes({
       type: 'clear'
     })
   }, [])
-
-  useEffect(() => {
-    if (nodesFromProps) {
-      setJumplist(nodesFromProps)
-    }
-  }, [
-    nodesFromProps,
-    setJumplist
-  ])
 
   const clearScrollTarget = useCallback(() => {
     setScrollTarget(undefined);
@@ -104,7 +86,6 @@ export const JumplistProvider: React.FC<JumplistProviderProps> = (props) => {
     jumplist: nodes,
     syncJumplistItem,
     removeJumplistItem,
-    setJumplist,
     currentJumplistIndex,
     activeJumplistIndex,
     setActiveJumplistIndex,

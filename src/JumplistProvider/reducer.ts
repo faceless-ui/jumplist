@@ -46,6 +46,8 @@ export const jumplistReducer = (
           ...foundItem,
           ...action.payload
         });
+      } else {
+        newState.push(action.payload);
       }
       break;
     }
