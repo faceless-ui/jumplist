@@ -1,9 +1,41 @@
 import React, { Fragment } from 'react';
-import { JumplistNode } from '../../src';
+import { DotNav, JumplistNode } from '../../src';
 
 export const JumplistDemo: React.FC = () => {
   return (
     <Fragment>
+      <style>
+        {`
+          .dotNav {
+            position: fixed;
+            left: 10px;
+            top: 50%;
+            transform: translate3d(0, -50%, 0);
+          }
+
+          .dot {
+            all: unset;
+            width: 20px;
+            height: 20px;
+            background-color: gray;
+            cursor: pointer;
+            margin-bottom: 10px;
+          }
+
+          .activeDot {
+            background-color: green;
+          }
+        `}
+      </style>
+      <DotNav
+        className='dotNav'
+        dotClassName='dot'
+        activeDotClassName="activeDot"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      />
       <div style={{ height: '200px' }} />
       <JumplistNode nodeID="1">
         <div
