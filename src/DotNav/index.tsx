@@ -19,7 +19,6 @@ export const DotNav: React.FC<DotNavProps> = (props) => {
 
   const {
     scrollToID,
-    currentJumplistIndex,
     jumplist
   } = useJumplist();
 
@@ -29,10 +28,9 @@ export const DotNav: React.FC<DotNavProps> = (props) => {
     <Tag {...rest}>
       {dotsArray.map((dot, index) => {
         const {
-          nodeID
+          nodeID,
+          isIntersecting
         } = jumplist[index];
-
-        const isActive = currentJumplistIndex === index;
 
         return (
           <button
@@ -46,7 +44,7 @@ export const DotNav: React.FC<DotNavProps> = (props) => {
               }
             }}
             className={[
-              isActive && activeDotClassName,
+              isIntersecting && activeDotClassName,
               dotClassName,
               buttonProps.className
             ].filter(Boolean).join(' ')}
