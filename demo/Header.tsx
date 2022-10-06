@@ -33,6 +33,12 @@ export const Header = () => {
 
   const hasJumplist = Array.isArray(jumplist) && jumplist.length > 0;
 
+  const prevNodeIndex = Math.max(0, (currentJumplistIndex || 0) - 1);
+  const prevNodeID = jumplist?.[prevNodeIndex]?.nodeID;
+
+  const nextNodeIndex = Math.min((activeJumplistIndex || 0) + 1, jumplist?.length - 1);
+  const nextNodeID = jumplist?.[nextNodeIndex]?.nodeID;
+
   return (
     <div
       style={{
@@ -92,11 +98,13 @@ export const Header = () => {
       )}
       <JumplistButton
         direction="prev"
+        nodeID={prevNodeID}
       >
         Prev
       </JumplistButton>
       <JumplistButton
         direction="next"
+        nodeID={nextNodeID}
       >
         Next
       </JumplistButton>
