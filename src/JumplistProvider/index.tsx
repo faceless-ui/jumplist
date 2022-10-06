@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useReducer, useState } from 'react';
+import React, { useCallback, useEffect, useReducer, useState } from 'react';
 import JumplistContext, { IJumplistContext, JumplistNode, JumplistNodes } from './context';
 import { jumplistReducer } from './reducer';
 
