@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useReducer, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useReducer, useState } from 'react';
 import JumplistContext, { IJumplistContext, JumplistNode, JumplistNodes } from './context';
 import { jumplistReducer } from './reducer';
 
@@ -23,22 +23,12 @@ export const JumplistProvider: React.FC<JumplistProviderProps> = (props) => {
   } = props;
 
   const [nodes, dispatchNodes] = useReducer(jumplistReducer, []);
-  const [currentJumplistIndex, setCurrentJumplistIndex] = useState<number | undefined>(); // could be -1 if no nodes are intersecting
-  const [activeJumplistIndex, setActiveJumplistIndex] = useState<number | undefined>(); // a memoized version of `activeJumplistIndex` to track the last-known index
   const [scrollTarget, setScrollTarget] = useState<string | undefined>(); // when defined, the matching jumplist node will scroll itself into view
 
-  useEffect(() => {
-    if (nodes) {
-      const firstActive = nodes.findIndex((node: JumplistNode) => node.isIntersecting);
-      setCurrentJumplistIndex(firstActive);
-    }
-  }, [nodes])
-
-  useEffect(() => {
-    if (currentJumplistIndex !== undefined && currentJumplistIndex > -1) {
-      setActiveJumplistIndex(currentJumplistIndex);
-    }
-  }, [currentJumplistIndex])
+  const currentJumplistIndex = nodes.findIndex((node: JumplistNode) => node.isIntersecting); // could be -1 if no nodes are intersecting
+  const activeJumplistIndex = typeof currentJumplistIndex === 'number' && currentJumplistIndex > -1
+    ? currentJumplistIndex
+    : undefined;
 
   const syncJumplistItem = useCallback((incomingNode: JumplistNode) => {
     dispatchNodes({
@@ -88,7 +78,6 @@ export const JumplistProvider: React.FC<JumplistProviderProps> = (props) => {
     removeJumplistItem,
     currentJumplistIndex,
     activeJumplistIndex,
-    setActiveJumplistIndex,
     clearJumplist,
     rootMargin,
     threshold,
