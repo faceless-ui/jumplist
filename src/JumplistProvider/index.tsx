@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useReducer, useState } from 'react';
-import JumplistContext, { IJumplistContext, JumplistNode, JumplistNodes } from './context';
-import { jumplistReducer } from './reducer';
+import { JumplistContext, type IJumplistContext, JumplistNode, JumplistNodes } from './context.js';
+import { jumplistReducer } from './reducer.js';
 
 export type ChildFunction = (context: IJumplistContext) => React.ReactNode; // eslint-disable-line no-unused-vars
 

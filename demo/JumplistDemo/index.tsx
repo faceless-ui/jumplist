@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { DotNav, JumplistNode } from '../../src';
+import { DotNav, JumplistNode } from '@faceless-ui/jumplist';
 
 export const JumplistDemo: React.FC = () => {
   return (

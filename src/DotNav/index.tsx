@@ -1,5 +1,5 @@
 import React, { HTMLProps } from 'react';
-import { useJumplist } from '../JumplistProvider/context';
+import { useJumplist } from '../JumplistProvider/context.js';
 
 export interface DotNavProps extends HTMLProps<HTMLElement> {
   htmlElement?: React.ElementType

@@ -26,5 +26,3 @@ export interface IJumplistContext {
 export const useJumplist = (): IJumplistContext => useContext(JumplistContext);
 
 export const JumplistContext = createContext<IJumplistContext>({} as IJumplistContext);
-
-export default JumplistContext;

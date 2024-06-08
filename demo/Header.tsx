@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { JumplistButton, useJumplist } from '../src';
+import { JumplistButton, useJumplist } from '@faceless-ui/jumplist';
 
 const jumplistMenu = [
   {
@@ -92,11 +92,13 @@ export const Header = () => {
       )}
       <JumplistButton
         direction="prev"
+        nodeID='1'
       >
         Prev
       </JumplistButton>
       <JumplistButton
         direction="next"
+        nodeID='2'
       >
         Next
       </JumplistButton>
