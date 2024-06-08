@@ -11,6 +11,7 @@
     "jsx": "react",
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "declaration": true,
     "declarationDir": "./dist",
     "paths": {
