@@ -1,5 +1,5 @@
-import React, { HTMLProps, MouseEvent, useCallback, useEffect } from 'react';
-import { JumplistNode, useJumplist } from '../JumplistProvider/context.js';
+import React, { HTMLProps, MouseEvent, useCallback } from 'react';
+import { useJumplist } from '../JumplistProvider/context.js';
 
 export interface JumplistButtonProps extends HTMLProps<HTMLElement> {
   htmlElement?: React.ElementType
@@ -25,14 +25,7 @@ export const JumplistButton: React.FC<JumplistButtonProps> = (props) => {
     jumplist,
   } = useJumplist();
 
-  const [nodeState, setNodeState] = React.useState<JumplistNode | undefined>(() => jumplist?.find((item) => item.nodeID === nodeID));
-
-  useEffect(() => {
-    setNodeState(jumplist?.find((item) => item.nodeID === nodeID));
-  }, [
-    jumplist,
-    nodeID
-  ]);
+  const nodeState = jumplist?.find((item) => item.nodeID === nodeID);
 
   const handleClick = useCallback((e: MouseEvent<HTMLElement>) => {
     if (nodeID) {
