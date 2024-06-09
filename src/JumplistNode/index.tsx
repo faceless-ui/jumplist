@@ -1,6 +1,6 @@
 import React, { HTMLProps, useEffect, useRef } from 'react';
-import { useJumplist } from '../JumplistProvider/context';
-import useIntersection from './useIntersection';
+import { useJumplist } from '../JumplistProvider/context.js';
+import { useIntersection } from './useIntersection.js';
 
 export interface JumplistNodeProps extends HTMLProps<HTMLElement> {
   nodeID: string

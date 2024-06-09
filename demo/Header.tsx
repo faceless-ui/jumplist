@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { JumplistButton, useJumplist } from '../src';
+import { JumplistButton, useJumplist } from '@faceless-ui/jumplist';
 
 const jumplistMenu = [
   {

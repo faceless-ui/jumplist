@@ -1,7 +1,7 @@
 import React from 'react';
-import { JumplistProvider } from '../src';
-import { Header } from './Header';
-import { JumplistDemo } from './JumplistDemo';
+import { JumplistProvider } from '@faceless-ui/jumplist';
+import { Header } from './Header.js';
+import { JumplistDemo } from './JumplistDemo/index.js';
 
 const App: React.FC = () => (
   <JumplistProvider

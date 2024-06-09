@@ -2,20 +2,28 @@
   "compilerOptions": {
     "outDir": "./dist",
     "allowJs": true,
-    "target": "es5",
-    "module": "commonjs",
-    "sourceMap": true,
+    "target": "es6",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "resolveJsonModule": true,
     "strict": true,
+    "sourceMap": true,
     "jsx": "react",
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "declaration": true,
     "declarationDir": "./dist",
+    "paths": {
+      "@faceless-ui/jumplist": ["./src/index.ts"],
+    },
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "demo/**/*",
   ],
   "exclude": [
-    "**/*.test.js"
+    "**/*.test.js",
+    "node_modules"
   ]
 }
